@@ -4,10 +4,8 @@ import com.extrawest.ocpi_emsp_prototype.validation.Validatable;
 import com.extrawest.ocpi_emsp_prototype.validation.ValidationRules;
 import com.extrawest.ocpi_emsp_prototype.validation.Validator;
 import com.extrawest.ocpi_emsp_prototype.validation.ValidatorBuilder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 @Getter
 @ToString
@@ -15,11 +13,13 @@ import lombok.ToString;
 @NoArgsConstructor
 public class DisplayText implements Validatable {
 
+    @JsonIgnore
     private final transient Validator languageValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string2())
                     .build();
+    @JsonIgnore
     private final transient Validator textValidator =
             new ValidatorBuilder()
                     .setRequired(true)

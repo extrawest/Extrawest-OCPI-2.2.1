@@ -1,10 +1,8 @@
 package com.extrawest.ocpi_emsp_prototype.dataTypes;
 
 import com.extrawest.ocpi_emsp_prototype.validation.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import java.util.List;
 
@@ -14,14 +12,17 @@ import java.util.List;
 @NoArgsConstructor
 public class EnergyMix implements Validatable {
 
+    @JsonIgnore
     private final transient Validator supplier_nameValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string64())
                     .build();
+    @JsonIgnore
     private final transient Validator energy_product_nameValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string64())
                     .build();
+    @JsonIgnore
     private final transient Validator requiredValidator = new RequiredValidator();
 
     /**

@@ -6,10 +6,8 @@ import com.extrawest.ocpi_emsp_prototype.validation.Validatable;
 import com.extrawest.ocpi_emsp_prototype.validation.ValidationRules;
 import com.extrawest.ocpi_emsp_prototype.validation.Validator;
 import com.extrawest.ocpi_emsp_prototype.validation.ValidatorBuilder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import java.util.List;
 
@@ -19,21 +17,25 @@ import java.util.List;
 @NoArgsConstructor
 public class TariffRestrictions implements Validatable {
 
+    @JsonIgnore
     private final transient Validator start_timeValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string5())
                     .build();
 
+    @JsonIgnore
     private final transient Validator end_timeValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string5())
                     .build();
 
+    @JsonIgnore
     private final transient Validator start_dateValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string10())
                     .build();
 
+    @JsonIgnore
     private final transient Validator end_dateValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string10())

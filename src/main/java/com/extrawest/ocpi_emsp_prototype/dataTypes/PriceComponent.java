@@ -4,17 +4,17 @@ import com.extrawest.ocpi_emsp_prototype.dataTypes.enums.TariffDimensionType;
 import com.extrawest.ocpi_emsp_prototype.validation.RequiredValidator;
 import com.extrawest.ocpi_emsp_prototype.validation.Validatable;
 import com.extrawest.ocpi_emsp_prototype.validation.Validator;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 @Getter
 @ToString
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
+@AllArgsConstructor
 public class PriceComponent implements Validatable {
 
+    @JsonIgnore
     private final transient Validator<Object> requiredValidator = new RequiredValidator();
 
     /**

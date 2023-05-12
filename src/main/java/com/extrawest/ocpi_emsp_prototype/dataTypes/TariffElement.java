@@ -3,10 +3,8 @@ package com.extrawest.ocpi_emsp_prototype.dataTypes;
 import com.extrawest.ocpi_emsp_prototype.validation.ListOfAtLeastOneObjects;
 import com.extrawest.ocpi_emsp_prototype.validation.Validatable;
 import com.extrawest.ocpi_emsp_prototype.validation.Validator;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import java.util.List;
 
@@ -16,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 public class TariffElement implements Validatable {
 
+    @JsonIgnore
     private final transient Validator price_componentsValidator = new ListOfAtLeastOneObjects();
 
     /**

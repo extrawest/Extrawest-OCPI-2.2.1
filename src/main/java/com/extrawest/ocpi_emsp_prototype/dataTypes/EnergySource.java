@@ -4,10 +4,8 @@ import com.extrawest.ocpi_emsp_prototype.dataTypes.enums.EnergySourceCategory;
 import com.extrawest.ocpi_emsp_prototype.validation.RequiredValidator;
 import com.extrawest.ocpi_emsp_prototype.validation.Validatable;
 import com.extrawest.ocpi_emsp_prototype.validation.Validator;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 @Getter
 @ToString
@@ -15,6 +13,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class EnergySource implements Validatable {
 
+    @JsonIgnore
     private final transient Validator requiredValidator = new RequiredValidator();
 
     /**
