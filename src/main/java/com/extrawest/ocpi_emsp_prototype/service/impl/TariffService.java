@@ -3,8 +3,11 @@ package com.extrawest.ocpi_emsp_prototype.service.impl;
 import com.extrawest.ocpi_emsp_prototype.dataTypes.PriceComponent;
 import com.extrawest.ocpi_emsp_prototype.dataTypes.TariffElement;
 import com.extrawest.ocpi_emsp_prototype.dataTypes.enums.TariffDimensionType;
+import com.extrawest.ocpi_emsp_prototype.dto.TariffRequestDTO;
+import com.extrawest.ocpi_emsp_prototype.mapper.TariffMapper;
 import com.extrawest.ocpi_emsp_prototype.model.Tariff;
 import com.extrawest.ocpi_emsp_prototype.service.ITariffService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -13,11 +16,26 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@AllArgsConstructor
 public class TariffService implements ITariffService {
 
+    private final TariffMapper tariffMapper;
+
     @Override
-    public boolean save (Tariff tariff) {
-        return tariff.validate();
+    public boolean save (TariffRequestDTO tariff) {
+        return tariffMapper.toTariffEntity(tariff).validate();
+    }
+
+    @Override
+    public boolean saveAll(List<TariffRequestDTO> tariffRequestDTOList) {
+        List<Tariff> tariffList = new ArrayList<>();
+        tariffList = tariffMapper.toListTariff(tariffRequestDTOList);
+        for (Tariff tariff:tariffList) {
+            if (!tariff.validate()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
