@@ -6,10 +6,8 @@ import com.extrawest.ocpi_emsp_prototype.dataTypes.Price;
 import com.extrawest.ocpi_emsp_prototype.dataTypes.TariffElement;
 import com.extrawest.ocpi_emsp_prototype.dataTypes.enums.TariffType;
 import com.extrawest.ocpi_emsp_prototype.validation.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,32 +18,38 @@ import java.util.List;
 @NoArgsConstructor
 public class Tariff implements Validatable {
 
+    @JsonIgnore
     private final transient Validator country_codeValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string2())
                     .build();
 
+    @JsonIgnore
     private final transient Validator party_idValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string3())
                     .build();
 
+    @JsonIgnore
     private final transient Validator idValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string36())
                     .build();
 
+    @JsonIgnore
     private final transient Validator currencyValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string3())
                     .build();
 
+    @JsonIgnore
     private final transient Validator elementsValidator = new ListOfAtLeastOneObjects();
 
+    @JsonIgnore
     private final transient Validator requiredValidator = new RequiredValidator();
 
     /**
