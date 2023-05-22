@@ -1,8 +1,6 @@
 package com.extrawest.ocpi_emsp_prototype.dataTypes;
 
-import com.extrawest.ocpi_emsp_prototype.validation.RequiredValidator;
-import com.extrawest.ocpi_emsp_prototype.validation.Validatable;
-import com.extrawest.ocpi_emsp_prototype.validation.Validator;
+import com.extrawest.ocpi_emsp_prototype.validation.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
@@ -20,7 +18,17 @@ import lombok.ToString;
 public class GeoLocation implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final transient Validator latitudeValidator =
+            new ValidatorBuilder()
+                    .setRequired(true)
+                    .addRule(ValidationRules.string10())
+                    .build();
+    @JsonIgnore
+    private final transient Validator longitudeValidator =
+            new ValidatorBuilder()
+                    .setRequired(true)
+                    .addRule(ValidationRules.string11())
+                    .build();
 
     /**
      * Latitude of the point in decimal degree. Example: 50.770774. Decimal separator: "."
@@ -36,18 +44,18 @@ public class GeoLocation implements Validatable {
     private String longitude;
 
     public void setLatitude(String latitude) {
-        requiredValidator.validate(latitude);
+        latitudeValidator.validate(latitude);
         this.latitude = latitude;
     }
 
     public void setLongitude(String longitude) {
-        requiredValidator.validate(longitude);
+        longitudeValidator.validate(longitude);
         this.longitude = longitude;
     }
 
     @Override
     public boolean validate() {
-        return requiredValidator.safeValidate(latitude)
-                && requiredValidator.safeValidate(longitude);
+        return latitudeValidator.safeValidate(latitude)
+                && longitudeValidator.safeValidate(longitude);
     }
 }
