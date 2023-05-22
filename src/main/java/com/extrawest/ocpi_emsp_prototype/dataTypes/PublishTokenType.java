@@ -5,6 +5,12 @@ import com.extrawest.ocpi_emsp_prototype.validation.Validatable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+/**
+ * Defines the set of values that identify a token to which a Location might be published.
+ * At least one of the following fields SHALL be set: uid, visual_number, or group_id.
+ * When uid is set, type SHALL also be set.
+ * When visual_number is set, issuer SHALL also be set.
+ */
 @Getter
 @ToString
 @EqualsAndHashCode(callSuper = false)
