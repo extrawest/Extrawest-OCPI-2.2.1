@@ -22,6 +22,11 @@ public class Image implements Validatable {
                     .addRule(ValidationRules.string255())
                     .build();
     @JsonIgnore
+    private final transient Validator thumbnailValidator =
+            new ValidatorBuilder()
+                    .addRule(ValidationRules.string255())
+                    .build();
+    @JsonIgnore
     private final transient Validator typeValidator =
             new ValidatorBuilder()
                     .setRequired(true)
@@ -68,6 +73,7 @@ public class Image implements Validatable {
     }
 
     public void setThumbnail(String thumbnail) {
+        thumbnailValidator.validate(thumbnail);
         this.thumbnail = thumbnail;
     }
 
