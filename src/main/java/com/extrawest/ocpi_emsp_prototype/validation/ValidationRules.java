@@ -2,6 +2,10 @@ package com.extrawest.ocpi_emsp_prototype.validation;
 
 public class ValidationRules {
 
+    public static IValidationRule string1() {
+        return new StringMaxLengthValidationRule(1);
+    }
+
     public static IValidationRule string2() {
         return new StringMaxLengthValidationRule(2);
     }
@@ -30,8 +34,15 @@ public class ValidationRules {
         return new StringMaxLengthValidationRule(16);
     }
 
+    public static IValidationRule string20() {
+        return new StringMaxLengthValidationRule(20);
+    }
+
     public static IValidationRule string36() {
         return new StringMaxLengthValidationRule(36);
+
+    }public static IValidationRule string45() {
+        return new StringMaxLengthValidationRule(45);
     }
 
     public static IValidationRule string48() {
