@@ -10,6 +10,10 @@ public class ValidationRules {
         return new StringMaxLengthValidationRule(3);
     }
 
+    public static IValidationRule string4() {
+        return new StringMaxLengthValidationRule(4);
+    }
+
     public static IValidationRule string5() {
             return new StringMaxLengthValidationRule(5);
     }
@@ -18,8 +22,24 @@ public class ValidationRules {
         return new StringMaxLengthValidationRule(10);
     }
 
+    public static IValidationRule string11() {
+        return new StringMaxLengthValidationRule(11);
+    }
+
+    public static IValidationRule string16() {
+        return new StringMaxLengthValidationRule(16);
+    }
+
     public static IValidationRule string36() {
         return new StringMaxLengthValidationRule(36);
+    }
+
+    public static IValidationRule string48() {
+        return new StringMaxLengthValidationRule(48);
+    }
+
+    public static IValidationRule string255() {
+        return new StringMaxLengthValidationRule(255);
     }
 
     public static IValidationRule string64() {
