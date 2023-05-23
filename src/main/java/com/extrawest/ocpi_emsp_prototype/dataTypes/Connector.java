@@ -36,6 +36,11 @@ public class Connector implements Validatable {
                     .build();
     @JsonIgnore
     private final transient Validator requiredValidator = new RequiredValidator();
+    @JsonIgnore
+    private final transient Validator termsAndConditionsValidator =
+            new ValidatorBuilder()
+                    .addRule(ValidationRules.string255())
+                    .build();
 
     /**
      * Identifier of the Connector within the EVSE. Two Connectors may have
@@ -89,8 +94,8 @@ public class Connector implements Validatable {
     /**
      * URL to the operator’s terms and conditions.
      */
-    @JsonProperty("url")
-    private String url;
+    @JsonProperty("terms_and_conditions")
+    private String termsAndConditions;
     /**
      * Timestamp when this Connector was last updated (or created).
      */
@@ -136,8 +141,9 @@ public class Connector implements Validatable {
         this.tariffIds = tariffIds;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUrl(String termsAndConditions) {
+        termsAndConditionsValidator.validate(termsAndConditions);
+        this.termsAndConditions = termsAndConditions;
     }
 
     public void setLastUpdated(LocalDateTime lastUpdated) {
