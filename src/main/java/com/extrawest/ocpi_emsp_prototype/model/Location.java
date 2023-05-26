@@ -1,8 +1,8 @@
 package com.extrawest.ocpi_emsp_prototype.model;
 
-import com.extrawest.ocpi_emsp_prototype.dataTypes.*;
-import com.extrawest.ocpi_emsp_prototype.dataTypes.enums.Facility;
-import com.extrawest.ocpi_emsp_prototype.dataTypes.enums.ParkingType;
+import com.extrawest.ocpi_emsp_prototype.model.dataTypes.*;
+import com.extrawest.ocpi_emsp_prototype.model.enums.Facility;
+import com.extrawest.ocpi_emsp_prototype.model.enums.ParkingType;
 import com.extrawest.ocpi_emsp_prototype.validation.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -24,7 +24,7 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public class Location implements Validatable {
+public class Location implements Validatable, LocationEvseConnector {
 
     @JsonIgnore
     private final transient Validator requiredValidator = new RequiredValidator();

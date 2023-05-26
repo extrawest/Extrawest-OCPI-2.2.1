@@ -1,10 +1,10 @@
 package com.extrawest.ocpi_emsp_prototype.model;
 
-import com.extrawest.ocpi_emsp_prototype.dataTypes.DisplayText;
-import com.extrawest.ocpi_emsp_prototype.dataTypes.EnergyMix;
-import com.extrawest.ocpi_emsp_prototype.dataTypes.Price;
-import com.extrawest.ocpi_emsp_prototype.dataTypes.TariffElement;
-import com.extrawest.ocpi_emsp_prototype.dataTypes.enums.TariffType;
+import com.extrawest.ocpi_emsp_prototype.model.dataTypes.DisplayText;
+import com.extrawest.ocpi_emsp_prototype.model.dataTypes.EnergyMix;
+import com.extrawest.ocpi_emsp_prototype.model.dataTypes.Price;
+import com.extrawest.ocpi_emsp_prototype.model.dataTypes.TariffElement;
+import com.extrawest.ocpi_emsp_prototype.model.enums.TariffType;
 import com.extrawest.ocpi_emsp_prototype.validation.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
