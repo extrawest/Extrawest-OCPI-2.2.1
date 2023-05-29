@@ -1,6 +1,10 @@
 package com.extrawest.ocpi_emsp_prototype.validation;
 
-public class ValidationRules {
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class ValidationRules {
 
     public static IValidationRule string1() {
         return new StringMaxLengthValidationRule(1);
