@@ -1,6 +1,6 @@
 package com.extrawest.ocpi_emsp_prototype.model.dto.response;
 
-import com.extrawest.ocpi_emsp_prototype.model.dataTypes.*;
+import com.extrawest.ocpi_emsp_prototype.model.vo.*;
 import com.extrawest.ocpi_emsp_prototype.model.enums.Facility;
 import com.extrawest.ocpi_emsp_prototype.model.enums.ParkingType;
 import lombok.AllArgsConstructor;

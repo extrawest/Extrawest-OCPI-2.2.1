@@ -1,10 +1,10 @@
 package com.extrawest.ocpi_emsp_prototype.model.dto.response;
 
 import com.extrawest.ocpi_emsp_prototype.model.enums.TariffType;
-import com.extrawest.ocpi_emsp_prototype.model.dataTypes.DisplayText;
-import com.extrawest.ocpi_emsp_prototype.model.dataTypes.EnergyMix;
-import com.extrawest.ocpi_emsp_prototype.model.dataTypes.Price;
-import com.extrawest.ocpi_emsp_prototype.model.dataTypes.TariffElement;
+import com.extrawest.ocpi_emsp_prototype.model.vo.DisplayText;
+import com.extrawest.ocpi_emsp_prototype.model.vo.EnergyMix;
+import com.extrawest.ocpi_emsp_prototype.model.vo.Price;
+import com.extrawest.ocpi_emsp_prototype.model.vo.TariffElement;
 import lombok.Data;
 
 import java.time.LocalDateTime;
