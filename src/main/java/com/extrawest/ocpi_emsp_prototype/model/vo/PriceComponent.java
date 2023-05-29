@@ -1,4 +1,4 @@
-package com.extrawest.ocpi_emsp_prototype.model.dataTypes;
+package com.extrawest.ocpi_emsp_prototype.model.vo;
 
 import com.extrawest.ocpi_emsp_prototype.model.enums.TariffDimensionType;
 import com.extrawest.ocpi_emsp_prototype.validation.RequiredValidator;
@@ -69,7 +69,7 @@ public class PriceComponent implements Validatable {
     @Override
     public boolean validate() {
         return requiredValidator.safeValidate(type)
-                &&requiredValidator.safeValidate(price)
-                &&requiredValidator.safeValidate(step_size);
+                && requiredValidator.safeValidate(price)
+                && requiredValidator.safeValidate(step_size);
     }
 }

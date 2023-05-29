@@ -1,4 +1,4 @@
-package com.extrawest.ocpi_emsp_prototype.model.dataTypes;
+package com.extrawest.ocpi_emsp_prototype.model.vo;
 
 import com.extrawest.ocpi_emsp_prototype.model.enums.ImageCategory;
 import com.extrawest.ocpi_emsp_prototype.validation.*;
@@ -98,7 +98,7 @@ public class Image implements Validatable {
     @Override
     public boolean validate() {
         return urlValidator.safeValidate(url)
-                &&requiredValidator.safeValidate(category)
-                &&typeValidator.safeValidate(type);
+                && requiredValidator.safeValidate(category)
+                && typeValidator.safeValidate(type);
     }
 }

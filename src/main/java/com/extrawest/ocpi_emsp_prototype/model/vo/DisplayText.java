@@ -1,4 +1,4 @@
-package com.extrawest.ocpi_emsp_prototype.model.dataTypes;
+package com.extrawest.ocpi_emsp_prototype.model.vo;
 
 import com.extrawest.ocpi_emsp_prototype.validation.Validatable;
 import com.extrawest.ocpi_emsp_prototype.validation.ValidationRules;
@@ -55,6 +55,6 @@ public class DisplayText implements Validatable {
     @Override
     public boolean validate() {
         return languageValidator.safeValidate(language)
-                &&textValidator.safeValidate(text);
+                && textValidator.safeValidate(text);
     }
 }

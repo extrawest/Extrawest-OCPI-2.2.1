@@ -1,6 +1,6 @@
-package com.extrawest.ocpi_emsp_prototype.model.dataTypes;
+package com.extrawest.ocpi_emsp_prototype.model.vo;
 
-import com.extrawest.ocpi_emsp_prototype.model.LocationEvseConnector;
+import com.extrawest.ocpi_emsp_prototype.model.AbstractDomainObject;
 import com.extrawest.ocpi_emsp_prototype.model.enums.ConnectorFormat;
 import com.extrawest.ocpi_emsp_prototype.model.enums.ConnectorType;
 import com.extrawest.ocpi_emsp_prototype.model.enums.PowerType;
@@ -22,7 +22,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
-public class Connector implements Validatable, LocationEvseConnector {
+public class Connector extends AbstractDomainObject implements Validatable {
 
     @JsonIgnore
     private final transient Validator idValidator =
@@ -155,11 +155,11 @@ public class Connector implements Validatable, LocationEvseConnector {
     @Override
     public boolean validate() {
         return idValidator.safeValidate(id)
-                &&requiredValidator.safeValidate(standard)
-                &&requiredValidator.safeValidate(format)
-                &&requiredValidator.safeValidate(powerType)
-                &&requiredValidator.safeValidate(maxVoltage)
-                &&requiredValidator.safeValidate(max_amperage)
-                &&requiredValidator.safeValidate(lastUpdated);
+                && requiredValidator.safeValidate(standard)
+                && requiredValidator.safeValidate(format)
+                && requiredValidator.safeValidate(powerType)
+                && requiredValidator.safeValidate(maxVoltage)
+                && requiredValidator.safeValidate(max_amperage)
+                && requiredValidator.safeValidate(lastUpdated);
     }
 }

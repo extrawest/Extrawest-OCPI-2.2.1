@@ -1,4 +1,4 @@
-package com.extrawest.ocpi_emsp_prototype.model.dataTypes;
+package com.extrawest.ocpi_emsp_prototype.model.vo;
 
 import com.extrawest.ocpi_emsp_prototype.model.enums.EnvironmentalImpactCategory;
 import com.extrawest.ocpi_emsp_prototype.validation.RequiredValidator;
@@ -45,6 +45,6 @@ public class EnvironmentalImpact implements Validatable {
     @Override
     public boolean validate() {
         return requiredValidator.safeValidate(category)
-                &&requiredValidator.safeValidate(amount);
+                && requiredValidator.safeValidate(amount);
     }
 }

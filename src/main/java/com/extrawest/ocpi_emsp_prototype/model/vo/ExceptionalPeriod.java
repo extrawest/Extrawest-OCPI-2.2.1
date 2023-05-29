@@ -1,4 +1,4 @@
-package com.extrawest.ocpi_emsp_prototype.model.dataTypes;
+package com.extrawest.ocpi_emsp_prototype.model.vo;
 
 import com.extrawest.ocpi_emsp_prototype.validation.RequiredValidator;
 import com.extrawest.ocpi_emsp_prototype.validation.Validatable;
@@ -48,6 +48,6 @@ public class ExceptionalPeriod implements Validatable {
     @Override
     public boolean validate() {
         return requiredValidator.safeValidate(periodBegin)
-                &&requiredValidator.safeValidate(periodEnd);
+                && requiredValidator.safeValidate(periodEnd);
     }
 }

@@ -1,6 +1,6 @@
-package com.extrawest.ocpi_emsp_prototype.model.dataTypes;
+package com.extrawest.ocpi_emsp_prototype.model.vo;
 
-import com.extrawest.ocpi_emsp_prototype.model.LocationEvseConnector;
+import com.extrawest.ocpi_emsp_prototype.model.AbstractDomainObject;
 import com.extrawest.ocpi_emsp_prototype.model.enums.Capability;
 import com.extrawest.ocpi_emsp_prototype.model.enums.ParkingRestriction;
 import com.extrawest.ocpi_emsp_prototype.model.enums.Status;
@@ -27,7 +27,7 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public class EVSE implements Validatable, LocationEvseConnector {
+public class EVSE extends AbstractDomainObject implements Validatable {
 
     @JsonIgnore
     private final transient Validator uidValidator =
@@ -191,8 +191,8 @@ public class EVSE implements Validatable, LocationEvseConnector {
     @Override
     public boolean validate() {
         return uidValidator.safeValidate(uid)
-                &&requiredValidator.safeValidate(status)
-                &&connectorsValidator.safeValidate(connectors)
-                &&requiredValidator.safeValidate(lastUpdated);
+                && requiredValidator.safeValidate(status)
+                && connectorsValidator.safeValidate(connectors)
+                && requiredValidator.safeValidate(lastUpdated);
     }
 }

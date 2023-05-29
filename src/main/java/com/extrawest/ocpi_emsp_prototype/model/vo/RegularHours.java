@@ -1,4 +1,4 @@
-package com.extrawest.ocpi_emsp_prototype.model.dataTypes;
+package com.extrawest.ocpi_emsp_prototype.model.vo;
 
 import com.extrawest.ocpi_emsp_prototype.validation.Validatable;
 import com.extrawest.ocpi_emsp_prototype.validation.ValidationRules;
@@ -68,7 +68,7 @@ public class RegularHours implements Validatable {
     @Override
     public boolean validate() {
         return weekdayValidator.safeValidate(String.valueOf(weekday))
-                &&periodValidator.safeValidate(periodBegin)
-                &&periodValidator.safeValidate(periodEnd);
+                && periodValidator.safeValidate(periodBegin)
+                && periodValidator.safeValidate(periodEnd);
     }
 }

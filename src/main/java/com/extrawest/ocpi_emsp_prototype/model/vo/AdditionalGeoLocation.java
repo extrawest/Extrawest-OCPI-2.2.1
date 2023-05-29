@@ -1,4 +1,4 @@
-package com.extrawest.ocpi_emsp_prototype.model.dataTypes;
+package com.extrawest.ocpi_emsp_prototype.model.vo;
 
 import com.extrawest.ocpi_emsp_prototype.validation.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -9,13 +9,14 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * This class defines the geo location of the Charge Point. The geodetic system to be used is WGS 84.
+ * This class defines an additional geo location that is relevant for the Charge Point.
+ * The geodetic system to be used is WGS 84.
  */
 @Getter
 @ToString
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public class GeoLocation implements Validatable {
+public class AdditionalGeoLocation implements Validatable {
 
     @JsonIgnore
     private final transient Validator latitudeValidator =
@@ -43,6 +44,9 @@ public class GeoLocation implements Validatable {
     @JsonProperty("longitude")
     private String longitude;
 
+    @JsonProperty("name")
+    private DisplayText name;
+
     public void setLatitude(String latitude) {
         latitudeValidator.validate(latitude);
         this.latitude = latitude;
@@ -51,6 +55,10 @@ public class GeoLocation implements Validatable {
     public void setLongitude(String longitude) {
         longitudeValidator.validate(longitude);
         this.longitude = longitude;
+    }
+
+    public void setName(DisplayText name) {
+        this.name = name;
     }
 
     @Override
