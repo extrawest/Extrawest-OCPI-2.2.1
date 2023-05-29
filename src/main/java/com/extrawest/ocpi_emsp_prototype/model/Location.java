@@ -1,6 +1,6 @@
 package com.extrawest.ocpi_emsp_prototype.model;
 
-import com.extrawest.ocpi_emsp_prototype.model.dataTypes.*;
+import com.extrawest.ocpi_emsp_prototype.model.vo.*;
 import com.extrawest.ocpi_emsp_prototype.model.enums.Facility;
 import com.extrawest.ocpi_emsp_prototype.model.enums.ParkingType;
 import com.extrawest.ocpi_emsp_prototype.validation.*;
@@ -24,7 +24,7 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public class Location implements Validatable, LocationEvseConnector {
+public class Location extends AbstractDomainObject implements Validatable {
 
     @JsonIgnore
     private final transient Validator requiredValidator = new RequiredValidator();
@@ -346,14 +346,14 @@ public class Location implements Validatable, LocationEvseConnector {
     @Override
     public boolean validate() {
         return countryCodeValidator.safeValidate(countryCode)
-                &&partyIdValidator.safeValidate(partyId)
-                &&idValidator.safeValidate(id)
-                &&requiredValidator.safeValidate(publish)
-                &addressValidator.safeValidate(address)
-                &&cityValidator.safeValidate(city)
-                &&countryValidator.safeValidate(country)
-                &&requiredValidator.safeValidate(coordinates)
-                &&timeZoneValidator.safeValidate(timeZone)
-                &&requiredValidator.safeValidate(lastUpdated);
+                && partyIdValidator.safeValidate(partyId)
+                && idValidator.safeValidate(id)
+                && requiredValidator.safeValidate(publish)
+                && addressValidator.safeValidate(address)
+                && cityValidator.safeValidate(city)
+                && countryValidator.safeValidate(country)
+                && requiredValidator.safeValidate(coordinates)
+                && timeZoneValidator.safeValidate(timeZone)
+                && requiredValidator.safeValidate(lastUpdated);
     }
 }

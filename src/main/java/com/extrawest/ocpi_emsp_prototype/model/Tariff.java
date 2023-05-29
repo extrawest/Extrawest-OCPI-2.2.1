@@ -1,12 +1,13 @@
 package com.extrawest.ocpi_emsp_prototype.model;
 
-import com.extrawest.ocpi_emsp_prototype.model.dataTypes.DisplayText;
-import com.extrawest.ocpi_emsp_prototype.model.dataTypes.EnergyMix;
-import com.extrawest.ocpi_emsp_prototype.model.dataTypes.Price;
-import com.extrawest.ocpi_emsp_prototype.model.dataTypes.TariffElement;
+import com.extrawest.ocpi_emsp_prototype.model.vo.DisplayText;
+import com.extrawest.ocpi_emsp_prototype.model.vo.EnergyMix;
+import com.extrawest.ocpi_emsp_prototype.model.vo.Price;
+import com.extrawest.ocpi_emsp_prototype.model.vo.TariffElement;
 import com.extrawest.ocpi_emsp_prototype.model.enums.TariffType;
 import com.extrawest.ocpi_emsp_prototype.validation.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -55,32 +56,39 @@ public class Tariff implements Validatable {
     /**
      *ISO-3166 alpha-2 country code of the CPO that owns this Tariff.
      */
-    private String country_code;
+    @JsonProperty("country_code")
+    private String countryCode;
     /**
      * ID of the CPO that 'owns' this Tariff (following the ISO-15118 standard).
      */
-    private String party_id;
+    @JsonProperty("party_id")
+    private String partyId;
     /**
      * Uniquely identifies the tariff within the CPO’s platform (and suboperatorplatforms).
      */
+    @JsonProperty("id")
     private String id;
     /**
      * Uniquely identifies the tariff within the CPO’s platform (and suboperatorplatforms).
      */
+    @JsonProperty("currency")
     private String currency;
     /**
      * Defines the type of the tariff. This allows for distinction in case of given Charging Preferences.
      * When omitted, this tariff is valid for all sessions.
      */
+    @JsonProperty("type")
     private TariffType type;
     /**
      * List of multi-language alternative tariff info texts
      */
-    private List<DisplayText> tariff_alt_text;
+    @JsonProperty("tariff_alt_text")
+    private List<DisplayText> tariffAltText;
     /**
      * URL to a web page that contains an explanation of the tariff information in human readable form.
      */
-    private String tariff_alt_url;
+    @JsonProperty("tariff_alt_url")
+    private String tariffAltUrl;
     /**
      *  When this field is set, a Charging Session with this tariff will at least cost this
      * amount. This is different from a FLAT fee (Start Tariff, Transaction Fee), as a
@@ -88,63 +96,70 @@ public class Tariff implements Validatable {
      * minimum price indicates that when the cost of a Charging Session is lower than
      * this amount, the cost of the Session will be equal to this amount.
      */
-    private Price min_price;
+    @JsonProperty("min_price")
+    private Price minPrice;
     /**
      * When this field is set, a Charging Session with this tariff will NOT cost more than this amount.
      */
-    private Price max_price;
+    @JsonProperty("max_price")
+    private Price maxPrice;
     /**
      * List of Tariff Elements.
      */
+    @JsonProperty("elements")
     private List<TariffElement> elements;
     /**
      * The time when this tariff becomes active, in UTC, time_zone field of the Location can be used to convert
      * to local time. Typically used for a new tariff that is already given with the location, before it becomes active.
      */
-    private LocalDateTime start_date_time;
+    @JsonProperty("start_date_time")
+    private LocalDateTime startDateTime;
     /**
      * The time after which this tariff is no longer valid, in UTC, time_zone field if the Location can be used
      * to convert to local time. Typically used when this tariff is going to be replaced with a different tariff
      * in the near future.
      */
-    private LocalDateTime end_date_time;
+    @JsonProperty("end_date_time")
+    private LocalDateTime endDateTime;
     /**
      * Details on the energy supplied with this tariff.
      */
-    private EnergyMix energy_mix;
+    @JsonProperty("energy_mix")
+    private EnergyMix energyMix;
     /**
      * Timestamp when this Tariff was last updated (or created).
      */
-    private LocalDateTime last_updated;
+    @JsonProperty("last_updated")
+    private LocalDateTime lastUpdated;
 
-    public Tariff(String country_code,
-                  String party_id,
+    public Tariff(String countryCode,
+                  String partyId,
                   String id,
                   String currency,
                   List<TariffElement> elements,
-                  LocalDateTime last_updated) {
-        country_codeValidator.validate(country_code);
-        party_idValidator.validate(party_id);
+                  LocalDateTime lastUpdated) {
+        country_codeValidator.validate(countryCode);
+        party_idValidator.validate(partyId);
         idValidator.validate(id);
         currencyValidator.validate(currency);
         elementsValidator.validate(elements);
-        requiredValidator.validate(last_updated);
-        this.country_code = country_code;
-        this.party_id = party_id;
+        requiredValidator.validate(lastUpdated);
+        this.countryCode = countryCode;
+        this.partyId = partyId;
         this.id = id;
         this.currency = currency;
         this.elements = elements;
-        this.last_updated = last_updated;
+        this.lastUpdated = lastUpdated;
     }
 
-    public void setCountry_code(String country_code) {
-        country_codeValidator.validate(country_code);
-        this.country_code = country_code;
+    public void setCountryCode(String countryCode) {
+        country_codeValidator.validate(countryCode);
+        this.countryCode = countryCode;
     }
 
-    public void setParty_id(String party_id) {
-        party_idValidator.validate(party_id);
-        this.party_id = party_id;
+    public void setPartyId(String partyId) {
+        party_idValidator.validate(partyId);
+        this.partyId = partyId;
     }
 
     public void setId(String id) {
@@ -161,20 +176,20 @@ public class Tariff implements Validatable {
         this.type = type;
     }
 
-    public void setTariff_alt_text(List<DisplayText> tariff_alt_text) {
-        this.tariff_alt_text = tariff_alt_text;
+    public void setTariffAltText(List<DisplayText> tariffAltText) {
+        this.tariffAltText = tariffAltText;
     }
 
-    public void setTariff_alt_url(String tariff_alt_url) {
-        this.tariff_alt_url = tariff_alt_url;
+    public void setTariffAltUrl(String tariffAltUrl) {
+        this.tariffAltUrl = tariffAltUrl;
     }
 
-    public void setMin_price(Price min_price) {
-        this.min_price = min_price;
+    public void setMinPrice(Price minPrice) {
+        this.minPrice = minPrice;
     }
 
-    public void setMax_price(Price max_price) {
-        this.max_price = max_price;
+    public void setMaxPrice(Price maxPrice) {
+        this.maxPrice = maxPrice;
     }
 
     public void setElements(List<TariffElement> elements) {
@@ -182,30 +197,30 @@ public class Tariff implements Validatable {
         this.elements = elements;
     }
 
-    public void setStart_date_time(LocalDateTime start_date_time) {
-        this.start_date_time = start_date_time;
+    public void setStartDateTime(LocalDateTime startDateTime) {
+        this.startDateTime = startDateTime;
     }
 
-    public void setEnd_date_time(LocalDateTime end_date_time) {
-        this.end_date_time = end_date_time;
+    public void setEndDateTime(LocalDateTime endDateTime) {
+        this.endDateTime = endDateTime;
     }
 
-    public void setEnergy_mix(EnergyMix energy_mix) {
-        this.energy_mix = energy_mix;
+    public void setEnergyMix(EnergyMix energyMix) {
+        this.energyMix = energyMix;
     }
 
-    public void setLast_updated(LocalDateTime last_updated) {
-        requiredValidator.validate(last_updated);
-        this.last_updated = last_updated;
+    public void setLastUpdated(LocalDateTime lastUpdated) {
+        requiredValidator.validate(lastUpdated);
+        this.lastUpdated = lastUpdated;
     }
 
     @Override
     public boolean validate() {
-        return country_codeValidator.safeValidate(country_code)
-                &&party_idValidator.safeValidate(party_id)
-                &&idValidator.safeValidate(id)
-                &&currencyValidator.safeValidate(currency)
-                &&elementsValidator.safeValidate(elements)
-                &&requiredValidator.safeValidate(last_updated);
+        return country_codeValidator.safeValidate(countryCode)
+                && party_idValidator.safeValidate(partyId)
+                && idValidator.safeValidate(id)
+                && currencyValidator.safeValidate(currency)
+                && elementsValidator.safeValidate(elements)
+                && requiredValidator.safeValidate(lastUpdated);
     }
 }
