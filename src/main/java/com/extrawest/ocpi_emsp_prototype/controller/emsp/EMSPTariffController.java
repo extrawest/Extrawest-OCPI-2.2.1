@@ -16,7 +16,7 @@ public abstract class EMSPTariffController {
      * @param tariff_id Party ID (Provider ID) of the CPO performing the GET request on the eMSP’s system.
      * @return The requested Tariff object.
      */
-    @GetMapping("/getTariff")
+    @GetMapping
     public abstract ResponseEntity<TariffResponseDTO> getTariff(
             @RequestParam(value = "country_code") String countryCode,
             @RequestParam(value = "party_id") String partyId,
@@ -31,7 +31,7 @@ public abstract class EMSPTariffController {
      * @param partyId Party ID (Provider ID) of the CPO performing the PUT request on the eMSP’s system. This SHALL be the same value as the party_id in the Tariff object being pushed.
      * @param tariff_id Tariff.id of the Tariff object to create or replace.
      */
-    @PutMapping("/putTariff")
+    @PutMapping
     public abstract void saveTariff(
             @RequestBody TariffRequestDTO tariffRequestDTO,
             @RequestParam(value = "country_code") String countryCode,
@@ -45,7 +45,7 @@ public abstract class EMSPTariffController {
      * @param partyId Party ID (Provider ID) of the CPO performing the PUT request on the eMSP’s system.
      * @param tariff_id Tariff.id of the Tariff object to delete.
      */
-    @DeleteMapping("/deleteTariff")
+    @DeleteMapping
     public abstract void deleteTariff(
             @RequestParam(value = "country_code") String countryCode,
             @RequestParam(value = "party_id") String partyId,

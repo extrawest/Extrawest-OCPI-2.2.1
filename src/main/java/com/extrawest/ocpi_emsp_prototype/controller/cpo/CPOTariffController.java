@@ -22,8 +22,8 @@ public abstract class CPOTariffController {
      * @param limit Maximum number of objects to GET
      * @return List of all tariffs.
      */
-    @GetMapping("/getTariffs")
-    public abstract ResponseEntity<List<TariffResponseDTO>> saveTariff(
+    @GetMapping
+    public abstract ResponseEntity<List<TariffResponseDTO>> geyTariffs(
             @RequestParam(value = "date_from", required = false) LocalDateTime dateFrom,
             @RequestParam(value = "date_to", required = false) LocalDateTime dateTo,
             @RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset,

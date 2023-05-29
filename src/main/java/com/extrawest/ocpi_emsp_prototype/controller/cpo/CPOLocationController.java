@@ -1,6 +1,6 @@
 package com.extrawest.ocpi_emsp_prototype.controller.cpo;
 
-import com.extrawest.ocpi_emsp_prototype.model.LocationEvseConnector;
+import com.extrawest.ocpi_emsp_prototype.model.AbstractDomainObject;
 import com.extrawest.ocpi_emsp_prototype.model.dto.response.LocationResponseDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +23,7 @@ public abstract class CPOLocationController {
      * @param limit Maximum number of objects to GET.
      * @return List of all Locations with valid EVSEs.
      */
-    @GetMapping("/getLocations")
+    @GetMapping
     public abstract ResponseEntity<List<LocationResponseDTO>> getLocations(
             @RequestParam(value = "date_from", required = false) LocalDateTime dateFrom,
             @RequestParam(value = "date_to", required = false) LocalDateTime dateTo,
@@ -41,8 +41,8 @@ public abstract class CPOLocationController {
      *      EVSE - If an EVSE object was requested: the EVSE object.
      *      Connector - If a Connector object was requested: the Connector object.
      */
-    @GetMapping("/getLocation")
-    public abstract ResponseEntity<LocationEvseConnector> getLocationEvseController(
+    @GetMapping
+    public abstract ResponseEntity<AbstractDomainObject> getLocationEvseController(
             @RequestParam(value = "location_id") String locationId,
             @RequestParam(value = "evse_uid", required = false) String evseUid,
             @RequestParam(value = "connector_id", required = false) String connectorId

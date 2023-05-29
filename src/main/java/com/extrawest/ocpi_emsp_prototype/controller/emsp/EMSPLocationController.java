@@ -1,6 +1,6 @@
 package com.extrawest.ocpi_emsp_prototype.controller.emsp;
 
-import com.extrawest.ocpi_emsp_prototype.model.LocationEvseConnector;
+import com.extrawest.ocpi_emsp_prototype.model.AbstractDomainObject;
 import com.extrawest.ocpi_emsp_prototype.model.dto.request.LocationRequestDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +21,8 @@ public abstract class EMSPLocationController {
      *      EVSE - If an EVSE object was requested: the EVSE object.
      *      Connector - If a Connector object was requested: the Connector object.
      */
-    @GetMapping("/getLocation")
-    public abstract ResponseEntity<LocationEvseConnector> getLocationEvseController(
+    @GetMapping
+    public abstract ResponseEntity<AbstractDomainObject> getLocationEvseController(
             @RequestParam(value = "country_code") String countryCode,
             @RequestParam(value = "party_id") String party_id,
             @RequestParam(value = "location_id") String locationId,
@@ -43,7 +43,7 @@ public abstract class EMSPLocationController {
      * @param evseUid Evse.uid, required when an EVSE or Connector object is pushed.
      * @param connectorId Connector.id, required when a Connector object is pushed.
      */
-    @PutMapping("/putLocation")
+    @PutMapping
     public abstract void pushLocation(
             @RequestBody LocationRequestDTO locationRequestDTO,
             @RequestParam(value = "country_code") String countryCode,
@@ -66,7 +66,7 @@ public abstract class EMSPLocationController {
      * @param evseUid Evse.uid, required when an EVSE or Connector object is pushed.
      * @param connectorId Connector.id, required when a Connector object is pushed.
      */
-    @PatchMapping("/patchLocation")
+    @PatchMapping
     public abstract void  patchLocation(
             @RequestBody LocationRequestDTO locationRequestDTO,
             @RequestParam(value = "country_code") String countryCode,
