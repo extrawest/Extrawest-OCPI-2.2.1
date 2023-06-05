@@ -5,25 +5,29 @@ import com.extrawest.ocpi_emsp_prototype.model.vo.DisplayText;
 import com.extrawest.ocpi_emsp_prototype.model.vo.EnergyMix;
 import com.extrawest.ocpi_emsp_prototype.model.vo.Price;
 import com.extrawest.ocpi_emsp_prototype.model.vo.TariffElement;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class TariffResponseDTO {
-    private String country_code;
-    private String party_id;
+    private String countryCode;
+    private String partyId;
     private String id;
     private String currency;
     private TariffType type;
-    private List<DisplayText> tariff_alt_text;
-    private String tariff_alt_url;
-    private Price min_price;
-    private Price max_price;
+    private List<DisplayText> tariffAltText;
+    private String tariffAltUrl;
+    private Price minPrice;
+    private Price maxPrice;
     private List<TariffElement> elements;
-    private LocalDateTime start_date_time;
-    private LocalDateTime end_date_time;
-    private EnergyMix energy_mix;
-    private LocalDateTime last_updated;
+    private LocalDateTime startDateTime;
+    private LocalDateTime endDateTime;
+    private EnergyMix energyMix;
+    private LocalDateTime lastUpdated;
 }
