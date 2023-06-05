@@ -50,6 +50,7 @@ public class VersionDetails implements Validatable {
     @Override
     public boolean validate() {
         return requiredValidator.safeValidate(version)
-                && endpointsValidator.safeValidate(endpoints);
+                && endpointsValidator.safeValidate(endpoints)
+                && endpoints.stream().filter(Endpoint::validate).count() == endpoints.size();
     }
 }

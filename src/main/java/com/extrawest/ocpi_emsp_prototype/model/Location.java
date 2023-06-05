@@ -353,6 +353,7 @@ public class Location extends AbstractDomainObject implements Validatable {
                 && cityValidator.safeValidate(city)
                 && countryValidator.safeValidate(country)
                 && requiredValidator.safeValidate(coordinates)
+                && coordinates.validate()
                 && timeZoneValidator.safeValidate(timeZone)
                 && requiredValidator.safeValidate(lastUpdated);
     }

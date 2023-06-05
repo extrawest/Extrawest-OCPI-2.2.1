@@ -221,6 +221,7 @@ public class Tariff implements Validatable {
                 && idValidator.safeValidate(id)
                 && currencyValidator.safeValidate(currency)
                 && elementsValidator.safeValidate(elements)
+                && elements.stream().filter(TariffElement::validate).count() == elements.size()
                 && requiredValidator.safeValidate(lastUpdated);
     }
 }

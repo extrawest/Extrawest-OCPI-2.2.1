@@ -193,6 +193,7 @@ public class EVSE extends AbstractDomainObject implements Validatable {
         return uidValidator.safeValidate(uid)
                 && requiredValidator.safeValidate(status)
                 && connectorsValidator.safeValidate(connectors)
-                && requiredValidator.safeValidate(lastUpdated);
+                && requiredValidator.safeValidate(lastUpdated)
+                && connectors.stream().filter(Connector::validate).count() == connectors.size();
     }
 }

@@ -42,6 +42,7 @@ public class TariffElement implements Validatable {
 
     @Override
     public boolean validate() {
-        return price_componentsValidator.safeValidate(price_components);
+        return price_componentsValidator.safeValidate(price_components)
+                && price_components.stream().filter(PriceComponent::validate).count() == price_components.size();
     }
 }
