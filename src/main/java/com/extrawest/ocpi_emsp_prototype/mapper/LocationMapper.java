@@ -11,6 +11,6 @@ import java.util.List;
 public interface LocationMapper {
     Location toLocationEntity(LocationRequestDTO locationRequestDTO);
     LocationResponseDTO toTariffResponseDTO(Location location);
-    List<LocationResponseDTO> toListTariffResponseDTO(List<Location> locations);
+    List<LocationResponseDTO> toListLocationResponseDTO(List<Location> locations);
     List<Location> toListLocation(List<LocationRequestDTO> locations);
 }
