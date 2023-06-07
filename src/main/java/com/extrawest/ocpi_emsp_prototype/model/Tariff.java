@@ -20,14 +20,14 @@ import java.util.List;
 public class Tariff implements Validatable {
 
     @JsonIgnore
-    private final transient Validator country_codeValidator =
+    private final transient Validator countryCodeValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string2())
                     .build();
 
     @JsonIgnore
-    private final transient Validator party_idValidator =
+    private final transient Validator partyIdValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string3())
@@ -138,8 +138,8 @@ public class Tariff implements Validatable {
                   String currency,
                   List<TariffElement> elements,
                   LocalDateTime lastUpdated) {
-        country_codeValidator.validate(countryCode);
-        party_idValidator.validate(partyId);
+        countryCodeValidator.validate(countryCode);
+        partyIdValidator.validate(partyId);
         idValidator.validate(id);
         currencyValidator.validate(currency);
         elementsValidator.validate(elements);
@@ -153,12 +153,12 @@ public class Tariff implements Validatable {
     }
 
     public void setCountryCode(String countryCode) {
-        country_codeValidator.validate(countryCode);
+        countryCodeValidator.validate(countryCode);
         this.countryCode = countryCode;
     }
 
     public void setPartyId(String partyId) {
-        party_idValidator.validate(partyId);
+        partyIdValidator.validate(partyId);
         this.partyId = partyId;
     }
 
@@ -216,8 +216,8 @@ public class Tariff implements Validatable {
 
     @Override
     public boolean validate() {
-        return country_codeValidator.safeValidate(countryCode)
-                && party_idValidator.safeValidate(partyId)
+        return countryCodeValidator.safeValidate(countryCode)
+                && partyIdValidator.safeValidate(partyId)
                 && idValidator.safeValidate(id)
                 && currencyValidator.safeValidate(currency)
                 && elementsValidator.safeValidate(elements)
