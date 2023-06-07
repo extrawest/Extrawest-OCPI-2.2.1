@@ -16,18 +16,18 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TariffRequestDTO {
-    private String country_code;
-    private String party_id;
+    private String countryCode;
+    private String partyId;
     private String id;
     private String currency;
     private TariffType type;
-    private List<DisplayText> tariff_alt_text;
-    private String tariff_alt_url;
-    private Price min_price;
-    private Price max_price;
+    private List<DisplayText> tariffAltText;
+    private String tariffAltUrl;
+    private Price minPrice;
+    private Price maxPrice;
     private List<TariffElement> elements;
-    private LocalDateTime start_date_time;
-    private LocalDateTime end_date_time;
-    private EnergyMix energy_mix;
-    private LocalDateTime last_updated;
+    private LocalDateTime startDateTime;
+    private LocalDateTime endDateTime;
+    private EnergyMix energyMix;
+    private LocalDateTime lastUpdated;
 }
