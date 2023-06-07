@@ -5,6 +5,8 @@ import com.extrawest.ocpi_emsp_prototype.validation.RequiredValidator;
 import com.extrawest.ocpi_emsp_prototype.validation.Validatable;
 import com.extrawest.ocpi_emsp_prototype.validation.Validator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Digits;
 import lombok.*;
 
 @Getter
@@ -19,10 +21,13 @@ public class EnergySource implements Validatable {
     /**
      * The type of energy source.
      */
+    @JsonProperty("source")
     private EnergySourceCategory source;
     /**
      * Percentage of this source (0-100) in the mix.
      */
+    @JsonProperty("percentage")
+    @Digits(integer = Integer.MAX_VALUE, fraction = 4)
     private Float percentage;
 
     public EnergySource(EnergySourceCategory source, Float percentage) {

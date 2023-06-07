@@ -4,6 +4,7 @@ import com.extrawest.ocpi_emsp_prototype.validation.RequiredValidator;
 import com.extrawest.ocpi_emsp_prototype.validation.Validatable;
 import com.extrawest.ocpi_emsp_prototype.validation.Validator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.Digits;
 import lombok.*;
 
 @Getter
@@ -18,28 +19,30 @@ public class Price implements Validatable {
     /**
      * Price/Cost excluding VAT.
      */
-    private Float excl_vat;
+    @Digits(integer = Integer.MAX_VALUE, fraction = 4)
+    private Float exclVat;
     /**
      * Price/Cost including VAT.
      */
-    private Float incl_vat;
+    @Digits(integer = Integer.MAX_VALUE, fraction = 4)
+    private Float inclVat;
 
-    public Price(float excl_vat) {
-        requiredValidator.validate(excl_vat);
-        this.excl_vat = excl_vat;
+    public Price(float exclVat) {
+        requiredValidator.validate(exclVat);
+        this.exclVat = exclVat;
     }
 
-    public void setExcl_vat(Float excl_vat) {
-        requiredValidator.validate(excl_vat);
-        this.excl_vat = excl_vat;
+    public void setExclVat(Float exclVat) {
+        requiredValidator.validate(exclVat);
+        this.exclVat = exclVat;
     }
 
-    public void setIncl_vat(Float incl_vat) {
-        this.incl_vat = incl_vat;
+    public void setInclVat(Float inclVat) {
+        this.inclVat = inclVat;
     }
 
     @Override
     public boolean validate() {
-        return requiredValidator.safeValidate(excl_vat);
+        return requiredValidator.safeValidate(exclVat);
     }
 }

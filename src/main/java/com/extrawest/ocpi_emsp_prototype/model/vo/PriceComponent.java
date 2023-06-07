@@ -5,6 +5,7 @@ import com.extrawest.ocpi_emsp_prototype.validation.RequiredValidator;
 import com.extrawest.ocpi_emsp_prototype.validation.Validatable;
 import com.extrawest.ocpi_emsp_prototype.validation.Validator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.Digits;
 import lombok.*;
 
 @Getter
@@ -24,11 +25,13 @@ public class PriceComponent implements Validatable {
     /**
      * Price per unit (excl. VAT) for this tariff dimension.
      */
+    @Digits(integer = Integer.MAX_VALUE, fraction = 4)
     private Float price;
     /**
      * Applicable VAT percentage for this tariff dimension. If omitted, no VAT is applicable.
      * Not providing a VAT is different from 0% VAT, which would be a value of 0.0 here.
      */
+    @Digits(integer = Integer.MAX_VALUE, fraction = 4)
     private Float vat;
     /**
      * Minimum amount to be billed. This unit will be billed in this step_size blocks.

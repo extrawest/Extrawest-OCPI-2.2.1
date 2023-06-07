@@ -5,6 +5,7 @@ import com.extrawest.ocpi_emsp_prototype.validation.RequiredValidator;
 import com.extrawest.ocpi_emsp_prototype.validation.Validatable;
 import com.extrawest.ocpi_emsp_prototype.validation.Validator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.Digits;
 import lombok.*;
 
 @Getter
@@ -23,6 +24,7 @@ public class EnvironmentalImpact implements Validatable {
     /**
      * Amount of this portion in g/kWh.
      */
+    @Digits(integer = Integer.MAX_VALUE, fraction = 4)
     private Float amount;
 
     public EnvironmentalImpact(EnvironmentalImpactCategory category, Float amount) {
