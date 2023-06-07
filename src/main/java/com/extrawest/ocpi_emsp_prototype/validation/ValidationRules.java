@@ -42,10 +42,20 @@ public final class ValidationRules {
         return new StringMaxLengthValidationRule(20);
     }
 
+    public static IValidationRule string32() {
+        return new StringMaxLengthValidationRule(32);
+    }
+
     public static IValidationRule string36() {
         return new StringMaxLengthValidationRule(36);
 
-    }public static IValidationRule string45() {
+    }
+
+    public static IValidationRule string39() {
+        return new StringMaxLengthValidationRule(39);
+    }
+
+    public static IValidationRule string45() {
         return new StringMaxLengthValidationRule(45);
     }
 
@@ -63,5 +73,8 @@ public final class ValidationRules {
 
     public static IValidationRule string512() {
         return new StringMaxLengthValidationRule(512);
+    }
+    public static IValidationRule string5000() {
+        return new StringMaxLengthValidationRule(5000);
     }
 }
