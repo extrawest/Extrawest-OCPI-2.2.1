@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/emsp/api/cdr")
+@RequestMapping("/emsp/api/2.2.1/cdr")
 public abstract class EMSPCdrController {
 
     /**

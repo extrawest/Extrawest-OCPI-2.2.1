@@ -1,6 +1,5 @@
 package com.extrawest.ocpi_emsp_prototype.controller.emsp;
 
-import com.extrawest.ocpi_emsp_prototype.model.VersionDetails;
 import com.extrawest.ocpi_emsp_prototype.model.dto.response.VersionDetailsResponseDTO;
 import com.extrawest.ocpi_emsp_prototype.model.dto.response.VersionResponseDTO;
 import com.extrawest.ocpi_emsp_prototype.model.enums.VersionNumber;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/emsp/api/versions")
+@RequestMapping("/emsp/api/2.2.1/versions")
 public abstract class EMSPVersionController {
     /**
      * Fetch information about the supported versions.

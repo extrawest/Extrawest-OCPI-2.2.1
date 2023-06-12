@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/emsp/api/credentials")
+@RequestMapping("/emsp/api/2.2.1/credentials")
 public abstract class EMSPCredentialsController {
     /**
      * Retrieves the credentials object to access the server’s platform.

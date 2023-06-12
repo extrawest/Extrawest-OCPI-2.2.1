@@ -1,16 +1,18 @@
 package com.extrawest.ocpi_emsp_prototype.controller.cpo;
 
-import com.extrawest.ocpi_emsp_prototype.model.VersionDetails;
 import com.extrawest.ocpi_emsp_prototype.model.dto.response.VersionDetailsResponseDTO;
 import com.extrawest.ocpi_emsp_prototype.model.dto.response.VersionResponseDTO;
 import com.extrawest.ocpi_emsp_prototype.model.enums.VersionNumber;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/cpo/api/versions")
+@RequestMapping("/cpo/api/2.2.1/versions")
 public abstract class CPOVersionController {
     /**
      * Fetch information about the supported versions.

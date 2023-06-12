@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cpo/api/locations")
+@RequestMapping("/cpo/api/2.2.1/locations")
 public abstract class CPOLocationController {
 
     /**

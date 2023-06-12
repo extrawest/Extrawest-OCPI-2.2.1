@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cpo/api/tariffs")
+@RequestMapping("/cpo/api/2.2.1/tariffs")
 public abstract class CPOTariffController {
 
     /**

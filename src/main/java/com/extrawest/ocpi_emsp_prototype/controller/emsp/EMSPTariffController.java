@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/emsp/api/tariffs")
+@RequestMapping("/emsp/api/2.2.1/tariffs")
 public abstract class EMSPTariffController {
 
     /**

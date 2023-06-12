@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cpo/api/cdr")
+@RequestMapping("/cpo/api/2.2.1/cdr")
 public abstract class CPOCdrController {
 
     /**

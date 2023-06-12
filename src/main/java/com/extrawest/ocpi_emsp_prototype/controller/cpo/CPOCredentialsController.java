@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/cpo/api/credentials")
+@RequestMapping("/cpo/api/2.2.1/credentials")
 public abstract class CPOCredentialsController {
     /**
      * Retrieves the credentials object to access the server’s platform.
