@@ -1,7 +1,7 @@
 package com.extrawest.ocpi_emsp_prototype.controller.cpo;
 
 import com.extrawest.ocpi_emsp_prototype.model.AbstractDomainObject;
-import com.extrawest.ocpi_emsp_prototype.model.dto.response.LocationResponseDTO;
+import com.extrawest.ocpi_emsp_prototype.model.dto.LocationDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +24,7 @@ public abstract class CPOLocationController {
      * @return List of all Locations with valid EVSEs.
      */
     @GetMapping
-    public abstract ResponseEntity<List<LocationResponseDTO>> getLocations(
+    public abstract ResponseEntity<List<LocationDTO>> getLocations(
             @RequestParam(value = "date_from", required = false) LocalDateTime dateFrom,
             @RequestParam(value = "date_to", required = false) LocalDateTime dateTo,
             @RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset,

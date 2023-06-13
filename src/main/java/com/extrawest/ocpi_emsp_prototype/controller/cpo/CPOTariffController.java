@@ -1,6 +1,6 @@
 package com.extrawest.ocpi_emsp_prototype.controller.cpo;
 
-import com.extrawest.ocpi_emsp_prototype.model.dto.response.TariffResponseDTO;
+import com.extrawest.ocpi_emsp_prototype.model.dto.TariffDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +23,7 @@ public abstract class CPOTariffController {
      * @return List of all tariffs.
      */
     @GetMapping
-    public abstract ResponseEntity<List<TariffResponseDTO>> geyTariffs(
+    public abstract ResponseEntity<List<TariffDTO>> geyTariffs(
             @RequestParam(value = "date_from", required = false) LocalDateTime dateFrom,
             @RequestParam(value = "date_to", required = false) LocalDateTime dateTo,
             @RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset,

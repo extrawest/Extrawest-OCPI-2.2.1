@@ -1,7 +1,6 @@
 package com.extrawest.ocpi_emsp_prototype.controller.emsp;
 
-import com.extrawest.ocpi_emsp_prototype.model.dto.request.TariffRequestDTO;
-import com.extrawest.ocpi_emsp_prototype.model.dto.response.TariffResponseDTO;
+import com.extrawest.ocpi_emsp_prototype.model.dto.TariffDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +16,7 @@ public abstract class EMSPTariffController {
      * @return The requested Tariff object.
      */
     @GetMapping
-    public abstract ResponseEntity<TariffResponseDTO> getTariff(
+    public abstract ResponseEntity<TariffDTO> getTariff(
             @RequestParam(value = "country_code") String countryCode,
             @RequestParam(value = "party_id") String partyId,
             @RequestParam(value = "tariff_id") String tariff_id
@@ -25,7 +24,7 @@ public abstract class EMSPTariffController {
 
     /**
      * Push new/updated Tariff object to the eMSP.
-     * @param tariffRequestDTO New or updated Tariff object.
+     * @param tariffDTO New or updated Tariff object.
      * @param countryCode Country code of the CPO performing the PUT request on the eMSP’s system. This SHALL be
      *                    the same value as the country_code in the Tariff object being pushed.
      * @param partyId Party ID (Provider ID) of the CPO performing the PUT request on the eMSP’s system. This SHALL be the same value as the party_id in the Tariff object being pushed.
@@ -33,7 +32,7 @@ public abstract class EMSPTariffController {
      */
     @PutMapping
     public abstract void saveTariff(
-            @RequestBody TariffRequestDTO tariffRequestDTO,
+            @RequestBody TariffDTO tariffDTO,
             @RequestParam(value = "country_code") String countryCode,
             @RequestParam(value = "party_id") String partyId,
             @RequestParam(value = "tariff_id") String tariff_id

@@ -1,7 +1,7 @@
 package com.extrawest.ocpi_emsp_prototype.controller.emsp;
 
 import com.extrawest.ocpi_emsp_prototype.model.AbstractDomainObject;
-import com.extrawest.ocpi_emsp_prototype.model.dto.request.LocationRequestDTO;
+import com.extrawest.ocpi_emsp_prototype.model.dto.LocationDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +33,7 @@ public abstract class EMSPLocationController {
     /**
      * The CPO pushes available Location, EVSE or Connector objects to the eMSP. PUT can be used to send
      * new Location objects to the eMSP but also to replace existing Locations.
-     * @param locationRequestDTO The request body contains the new/updated object.
+     * @param locationDTO The request body contains the new/updated object.
      * @param countryCode Country code of the CPO requesting this PUT to the eMSP system.
      *                    This SHALL be the same value as the country_code in the Location object being pushed.
      * @param party_id Party ID (Provider ID) of the CPO requesting this PUT to the eMSP system.
@@ -45,7 +45,7 @@ public abstract class EMSPLocationController {
      */
     @PutMapping
     public abstract void pushLocation(
-            @RequestBody LocationRequestDTO locationRequestDTO,
+            @RequestBody LocationDTO locationDTO,
             @RequestParam(value = "country_code") String countryCode,
             @RequestParam(value = "party_id") String party_id,
             @RequestParam(value = "location_id") String locationId,
@@ -56,7 +56,7 @@ public abstract class EMSPLocationController {
     /**
      * The CPO pushes available Location, EVSE or Connector objects to the eMSP. PUT can be used to send
      * new Location objects to the eMSP but also to replace existing Locations.
-     * @param locationRequestDTO The request body contains the new/updated object.
+     * @param locationDTO The request body contains the new/updated object.
      * @param countryCode Country code of the CPO requesting this PUT to the eMSP system.
      *                    This SHALL be the same value as the country_code in the Location object being pushed.
      * @param party_id Party ID (Provider ID) of the CPO requesting this PUT to the eMSP system.
@@ -68,7 +68,7 @@ public abstract class EMSPLocationController {
      */
     @PatchMapping
     public abstract void  patchLocation(
-            @RequestBody LocationRequestDTO locationRequestDTO,
+            @RequestBody LocationDTO locationDTO,
             @RequestParam(value = "country_code") String countryCode,
             @RequestParam(value = "party_id") String party_id,
             @RequestParam(value = "location_id") String locationId,
