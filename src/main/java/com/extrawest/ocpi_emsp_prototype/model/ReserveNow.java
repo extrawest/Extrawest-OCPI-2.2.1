@@ -1,6 +1,5 @@
 package com.extrawest.ocpi_emsp_prototype.model;
 
-import com.extrawest.ocpi_emsp_prototype.model.vo.Token;
 import com.extrawest.ocpi_emsp_prototype.validation.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

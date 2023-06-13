@@ -1,8 +1,9 @@
-package com.extrawest.ocpi_emsp_prototype.model.vo;
+package com.extrawest.ocpi_emsp_prototype.model;
 
 import com.extrawest.ocpi_emsp_prototype.model.enums.ProfileType;
 import com.extrawest.ocpi_emsp_prototype.model.enums.TokenType;
 import com.extrawest.ocpi_emsp_prototype.model.enums.WhitelistType;
+import com.extrawest.ocpi_emsp_prototype.model.vo.EnergyContract;
 import com.extrawest.ocpi_emsp_prototype.validation.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
