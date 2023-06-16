@@ -2,7 +2,8 @@ name: Publish Snapshot to GitHub Packages
 
 on:
   push:
-    branches: dev
+    branches:
+      - dev
 
 env:
   GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
@@ -27,5 +28,5 @@ jobs:
           TOKEN: ${{ env.GITHUB_TOKEN }}
         run: |
           mvn deploy -DskipTests=true -Dmaven.javadoc.skip=true \
-            -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/extrawest/Extrawest-OCA-OCPP \
+            -DaltDeploymentRepository=github::default::https://github.com/extrawest/Extrawest-OCPI-2.2.1 \
             -Dusername=${USERNAME} -Dpassword=${TOKEN}
