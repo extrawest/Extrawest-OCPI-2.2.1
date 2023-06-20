@@ -23,7 +23,7 @@ public abstract class CPOTariffController {
      * @return List of all tariffs.
      */
     @GetMapping
-    public abstract ResponseEntity<List<TariffDTO>> geyTariffs(
+    public abstract ResponseEntity<List<TariffDTO>> getTariffs(
             @RequestParam(value = "date_from", required = false) LocalDateTime dateFrom,
             @RequestParam(value = "date_to", required = false) LocalDateTime dateTo,
             @RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset,

@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.extrawest</groupId>
     <artifactId>Extrawest-OCPI-2.2.1</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>Extrawest-OCPI-2.2.1</name>
     <description>Extrawest-OCPI-2.2.1</description>
     <properties>
