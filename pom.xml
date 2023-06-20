@@ -163,6 +163,7 @@
                                         <closeRepository>false</closeRepository>
                                         <releaseRepository>false</releaseRepository>
                                         <stagingRepositories>target/staging-deploy</stagingRepositories>
+                                        <snapshotUrl>https://s01.oss.sonatype.org/content/repositories/snapshots/</snapshotUrl>
                                     </maven-central>
                                 </nexus2>
                             </maven>
