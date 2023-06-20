@@ -85,8 +85,10 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.0.2</version>
                 <configuration>
                     <skip>true</skip>
+                    <classifier>exec</classifier>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
@@ -205,12 +207,12 @@
         </repository>
 
         <!-- GitHub Releases -->
-        <!--<snapshotRepository>
+        <snapshotRepository>
             <id>github-releases</id>
             <url>https://maven.pkg.github.com/extrawest/Extrawest-OCPI-2.2.1</url>
             <name>GitHub Package Registry</name>
             <uniqueVersion>false</uniqueVersion>
-        </snapshotRepository>-->
+        </snapshotRepository>
     </distributionManagement>
 
 </project>
