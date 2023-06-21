@@ -2,23 +2,52 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.extrawest</groupId>
+    <artifactId>Extrawest-OCPI-2.2.1</artifactId>
+    <version>0.0.1</version>
+
+    <name>Extrawest-OCPI-2.2.1</name>
+    <description>Extrawest-OCPI-2.2.1</description>
+    <url>https://github.com/extrawest/Extrawest-OCPI-2.2.1</url>
+    <inceptionYear>2023</inceptionYear>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Vladyslav Tertyshnyi</name>
+            <email>vladyslav.tertyshnyi@extrawest.com</email>
+            <organization>extrawest</organization>
+            <organizationUrl>https://www.extrawest.com/</organizationUrl>
+        </developer>
+    </developers>
+    <organization>
+        <name>Extrawest</name>
+        <url>https://www.extrawest.com/</url>
+    </organization>
+    <scm>
+        <connection>scm:git:git://github.com/extrawest/Extrawest-OCPI-2.2.1.git</connection>
+        <developerConnection>scm:git:ssh://github.com/extrawest/Extrawest-OCPI-2.2.1.git</developerConnection>
+        <url>https://github.com/extrawest/Extrawest-OCPI-2.2.1</url>
+    </scm>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.6</version>
+        <version>3.0.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.extrawest</groupId>
-    <artifactId>Extrawest-OCPI-2.2.1</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>Extrawest-OCPI-2.2.1</name>
-    <description>Extrawest-OCPI-2.2.1</description>
+
     <properties>
         <java.version>17</java.version>
         <mapstruct.version>1.5.3.Final</mapstruct.version>
         <org.lombok.version>1.18.24</org.lombok.version>
         <lombok.mapstruct.version>0.2.0</lombok.mapstruct.version>
-        <maven.plugin.version>3.8.0</maven.plugin.version>
+        <maven.plugin.version>3.10.1</maven.plugin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -36,13 +65,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-<!--        swagger     -->
+        <!--        swagger     -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>2.0.4</version>
         </dependency>
-<!--        swagger     -->
+        <!--        swagger     -->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
@@ -51,12 +80,15 @@
     </dependencies>
 
     <build>
+        <finalName>${project.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.0.2</version>
                 <configuration>
                     <skip>true</skip>
+                    <classifier>exec</classifier>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
@@ -64,6 +96,19 @@
                         </exclude>
                     </excludes>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-source</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -92,7 +137,83 @@
                     </compilerArgs>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.jreleaser</groupId>
+                <artifactId>jreleaser-maven-plugin</artifactId>
+                <version>1.5.0</version>
+                <configuration>
+                    <jreleaser>
+                        <project>
+                            <description>OCPP operation tester for the Charge Points</description>
+                            <website>https://github.com/extrawest/Extrawest-OCPI-2.2.1/tree/main</website>
+                            <docsUrl>https://github.com/extrawest/Extrawest-OCPI-2.2.1/tree/main</docsUrl>
+                            <license>APACHE-2.0</license>
+                            <copyright>2023 Extrawest</copyright>
+                        </project>
+                        <signing>
+                            <active>ALWAYS</active>
+                            <armored>true</armored>
+                        </signing>
+                        <deploy>
+                            <maven>
+                                <nexus2>
+                                    <maven-central>
+                                        <active>ALWAYS</active>
+                                        <url>https://s01.oss.sonatype.org/service/local</url>;
+                                        <closeRepository>false</closeRepository>
+                                        <releaseRepository>false</releaseRepository>
+                                        <stagingRepositories>target/staging-deploy</stagingRepositories>
+                                        <snapshotUrl>https://s01.oss.sonatype.org/content/repositories/snapshots/</snapshotUrl>
+                                    </maven-central>
+                                </nexus2>
+                            </maven>
+                        </deploy>
+                    </jreleaser>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.5.0</version>
+                        <configuration>
+                            <doclint>none</doclint>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>attach-javadoc</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <distributionManagement>
+        <!-- Sonatype Repository -->
+        <repository>
+            <id>sonatype-nexus-releases</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+
+        <!-- GitHub Releases -->
+        <snapshotRepository>
+            <id>github-releases</id>
+            <url>https://maven.pkg.github.com/extrawest/Extrawest-OCPI-2.2.1</url>
+            <name>GitHub Package Registry</name>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>
