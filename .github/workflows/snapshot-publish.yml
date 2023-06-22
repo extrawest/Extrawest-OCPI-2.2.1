@@ -47,5 +47,4 @@ jobs:
 #            -DaltDeploymentRepository=github::default::https://github.com/extrawest/Extrawest-OCPI-2.2.1 \
 #            -Dusername=${USERNAME} -Dpassword=${TOKEN}
           run: |
-          mvn deploy -DskipTests=true -Dmaven.javadoc.skip=true \
-            -DaltDeploymentRepository=github::default::https://github.com/extrawest/Extrawest-OCPI-2.2.1 -Dpassword=${TOKEN}
+          mvn deploy -DskipTests=true -Dmaven.javadoc.skip=true -DaltDeploymentRepository=github::default::https://github.com/extrawest/Extrawest-OCPI-2.2.1 -Dpassword=${TOKEN}
