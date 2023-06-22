@@ -9,22 +9,6 @@ env:
   GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-#jobs:
-#  publish:
-#    runs-on: ubuntu-latest
-#    permissions:
-#      contents: read
-#      packages: write
-#    steps:
-#      - uses: actions/checkout@v3
-#      - uses: actions/setup-java@v3
-#        with:
-#          java-version: '11'
-#          distribution: 'adopt'
-#      - name: Publish package
-#        run: mvn --batch-mode deploy
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -42,8 +26,7 @@ jobs:
         env:
           USERNAME: ${{ env.GITHUB_USERNAME }}
           TOKEN: ${{ env.GITHUB_TOKEN }}
-#        run: |
-#          mvn deploy -DskipTests=true -Dmaven.javadoc.skip=true \
-#            -DaltDeploymentRepository=github::default::https://github.com/extrawest/Extrawest-OCPI-2.2.1 \
-#            -Dusername=${USERNAME} -Dpassword=${TOKEN}
-          run: mvn deploy -DskipTests=true -Dmaven.javadoc.skip=true -DaltDeploymentRepository=github::default::https://github.com/extrawest/Extrawest-OCPI-2.2.1 -Dpassword=${TOKEN}
+        run: |
+          mvn deploy -DskipTests=true -Dmaven.javadoc.skip=true \
+            -DaltDeploymentRepository=github::default::https://github.com/extrawest/Extrawest-OCPI-2.2.1 \
+            -Dusername=${USERNAME} -Dpassword=${TOKEN}
