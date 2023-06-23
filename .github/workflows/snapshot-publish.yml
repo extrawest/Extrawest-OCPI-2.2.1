@@ -1,32 +1,23 @@
-#name: Publish Snapshot to GitHub Packages
-#
-#on:
-#  push:
-#    branches:
-#      - dev-test
-#
-#env:
-#  GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
-#  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#
-#jobs:
-#  publish:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout Code
-#        uses: actions/checkout@v2
-#
-#      - name: Set up JDK 17
-#        uses: actions/setup-java@v3.10.0
-#        with:
-#          java-version: 17
-#          distribution: 'temurin'
-#
-#      - name: Build and Publish Snapshot
-#        env:
-#          USERNAME: ${{ env.GITHUB_USERNAME }}
-#          TOKEN: ${{ env.GITHUB_TOKEN }}
-#        run: |
-#          mvn deploy -DskipTests=true -Dmaven.javadoc.skip=true \
-#            -DaltDeploymentRepository=github::default::https://github.com/extrawest/Extrawest-OCPI-2.2.1 \
-#            -Dusername=${USERNAME} -Dpassword=${TOKEN}
+name: Publish Snapshot to GitHub Packages
+
+on:
+  push:
+    branches:
+      - dev-test
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+      - name: Publish package
+        run: mvn --batch-mode deploy -DrepositoryId=github -Dmaven.deploy.skip=true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
