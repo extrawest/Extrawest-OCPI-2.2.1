@@ -5,7 +5,8 @@
 
     <groupId>com.extrawest</groupId>
     <artifactId>Extrawest-OCPI-2.2.1</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+<!--    <version>0.0.1-SNAPSHOT</version>-->
+    <version>0.0.1</version>
 
     <name>Extrawest-OCPI-2.2.1</name>
     <description>Extrawest-OCPI-2.2.1</description>
