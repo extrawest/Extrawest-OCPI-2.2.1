@@ -24,14 +24,14 @@ import lombok.ToString;
 public class CancelReservation implements Validatable {
 
     @JsonIgnore
-    private final transient Validator responseUrlValidator =
+    private final Validator responseUrlValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string255())
                     .build();
 
     @JsonIgnore
-    private final transient Validator reservationIdValidator =
+    private final Validator reservationIdValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string36())

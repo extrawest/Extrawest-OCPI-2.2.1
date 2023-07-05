@@ -23,7 +23,7 @@ import lombok.ToString;
 public class ActiveChargingProfileResult extends AbstractProfileResult implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     /**
      * The requested ActiveChargingProfile, if the result field is set to: ACCEPTED

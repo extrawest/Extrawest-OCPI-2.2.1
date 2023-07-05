@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public abstract class ResponseFormat implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     @JsonProperty("status_code")
     protected Integer statusCode;

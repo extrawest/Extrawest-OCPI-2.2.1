@@ -22,9 +22,9 @@ import java.util.List;
 public class VersionDetails implements Validatable {
 
     @JsonIgnore
-    private final transient Validator endpointsValidator = new ListOfAtLeastOneObjects();
+    private final Validator endpointsValidator = new ListOfAtLeastOneObjects();
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     /**
      * The version number.
