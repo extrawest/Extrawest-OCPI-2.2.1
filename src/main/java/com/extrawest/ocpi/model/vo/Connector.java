@@ -27,20 +27,20 @@ import java.util.List;
 public class Connector extends AbstractDomainObject implements Validatable {
 
     @JsonIgnore
-    private final transient Validator idValidator =
+    private final Validator idValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string36())
                     .build();
     @JsonIgnore
-    private final transient Validator tariffIdsValidator =
+    private final Validator tariffIdsValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string36())
                     .build();
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
     @JsonIgnore
-    private final transient Validator termsAndConditionsValidator =
+    private final Validator termsAndConditionsValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string255())
                     .build();

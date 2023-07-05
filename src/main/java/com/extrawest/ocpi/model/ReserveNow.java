@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class ReserveNow extends AbstractCommand implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     @JsonIgnore
     protected final transient Validator reservationIdValidator =

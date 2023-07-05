@@ -1,6 +1,8 @@
 package com.extrawest.ocpi.controller.cpo;
 
 import com.extrawest.ocpi.model.dto.CdrDTO;
+import com.extrawest.ocpi.service.cpo.CPOCdrService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +14,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/cpo/api/2.2.1/cdr")
-public abstract class CPOCdrController {
+public class CPOCdrController {
+
+    protected final CPOCdrService cpoCdrService;
+
+    protected CPOCdrController(@Autowired CPOCdrService cpoCdrService) {
+        this.cpoCdrService = cpoCdrService;
+    }
 
     /**
      * Fetch CDRs from the CPO’s system.
@@ -24,10 +32,12 @@ public abstract class CPOCdrController {
      * will contain the pagination related headers.
      */
     @GetMapping
-    public abstract ResponseEntity<List<CdrDTO>> getCdr(
+    public ResponseEntity<List<CdrDTO>> getCdr(
             @RequestParam(value = "date_from") LocalDateTime dateFrom,
             @RequestParam(value = "date_to") LocalDateTime dateTo,
             @RequestParam(value = "offset") Integer offset,
             @RequestParam(value = "limit") Integer limit
-    );
+    ) {
+        return ResponseEntity.ok(cpoCdrService.getCdr(dateFrom, dateTo, offset, limit));
+    };
 }

@@ -16,15 +16,15 @@ import lombok.*;
 public class CredentialsRole implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
     @JsonIgnore
-    private final transient Validator partyIdValidator =
+    private final Validator partyIdValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string3())
                     .build();
     @JsonIgnore
-    private final transient Validator countryCodeValidator =
+    private final Validator countryCodeValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string2())

@@ -31,71 +31,71 @@ import java.util.List;
 public class CDR implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     @JsonIgnore
-    private final transient Validator chargingPeriodsValidator = new ListOfAtLeastOneObjects();
+    private final Validator chargingPeriodsValidator = new ListOfAtLeastOneObjects();
 
     @JsonIgnore
-    private final transient Validator countryCodeValidator =
+    private final Validator countryCodeValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string2())
                     .build();
 
     @JsonIgnore
-    private final transient Validator partyIdValidator =
+    private final Validator partyIdValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string3())
                     .build();
 
     @JsonIgnore
-    private final transient Validator idValidator =
+    private final Validator idValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string39())
                     .build();
 
     @JsonIgnore
-    private final transient Validator sessionIdValidator =
+    private final Validator sessionIdValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string36())
                     .build();
 
     @JsonIgnore
-    private final transient Validator authorizationReferenceValidator =
+    private final Validator authorizationReferenceValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string36())
                     .build();
 
     @JsonIgnore
-    private final transient Validator meterIdValidator =
+    private final Validator meterIdValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string255())
                     .build();
 
     @JsonIgnore
-    private final transient Validator currencyValidator =
+    private final Validator currencyValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string3())
                     .build();
 
     @JsonIgnore
-    private final transient Validator remarkValidator =
+    private final Validator remarkValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string255())
                     .build();
 
     @JsonIgnore
-    private final transient Validator invoiceReferenceIdValidator =
+    private final Validator invoiceReferenceIdValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string39())
                     .build();
 
     @JsonIgnore
-    private final transient Validator creditReferenceIdValidator =
+    private final Validator creditReferenceIdValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string39())
                     .build();

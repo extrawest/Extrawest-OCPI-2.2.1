@@ -15,17 +15,17 @@ import java.util.List;
 public class EnergyMix implements Validatable {
 
     @JsonIgnore
-    private final transient Validator supplier_nameValidator =
+    private final Validator supplier_nameValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string64())
                     .build();
     @JsonIgnore
-    private final transient Validator energy_product_nameValidator =
+    private final Validator energy_product_nameValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string64())
                     .build();
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     /**
      * True if 100% from regenerative sources. (CO2 and nuclear waste is zero)

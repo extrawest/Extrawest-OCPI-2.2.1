@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 public class ExceptionalPeriod implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     /**
      * Begin of the exception. In UTC, time_zone field can be used to convert to local time.

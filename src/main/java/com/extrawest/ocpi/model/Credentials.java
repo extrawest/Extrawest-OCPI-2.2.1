@@ -20,19 +20,19 @@ import java.util.List;
 public class Credentials implements Validatable {
 
     @JsonIgnore
-    private final transient Validator urlValidator =
+    private final Validator urlValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string255())
                     .build();
     @JsonIgnore
-    private final transient Validator tokenValidator =
+    private final Validator tokenValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string64())
                     .build();
     @JsonIgnore
-    private final transient Validator rolesValidator = new ListOfAtLeastOneObjects();
+    private final Validator rolesValidator = new ListOfAtLeastOneObjects();
 
     /**
      * Case Sensitive, ASCII only. The credentials token for the other party to authenticate in your system.

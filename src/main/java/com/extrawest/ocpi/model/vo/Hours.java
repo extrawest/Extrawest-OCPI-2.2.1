@@ -22,7 +22,7 @@ import java.util.List;
 public class Hours implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     /**
      * True to represent 24 hours a day and 7 days a week, except the given exceptions.

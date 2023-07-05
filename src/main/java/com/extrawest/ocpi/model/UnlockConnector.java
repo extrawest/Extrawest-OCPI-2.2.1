@@ -18,21 +18,21 @@ import lombok.ToString;
 public class UnlockConnector extends AbstractCommand implements Validatable {
 
     @JsonIgnore
-    protected final transient Validator locationIdValidator =
+    protected final Validator locationIdValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string36())
                     .build();
 
     @JsonIgnore
-    protected final transient Validator evseUidValidator =
+    protected final Validator evseUidValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string36())
                     .build();
 
     @JsonIgnore
-    protected final transient Validator connectorIdValidator =
+    protected final Validator connectorIdValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string36())

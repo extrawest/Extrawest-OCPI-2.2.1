@@ -20,25 +20,25 @@ import java.util.List;
 public class TariffRestrictions implements Validatable {
 
     @JsonIgnore
-    private final transient Validator startTimeValidator =
+    private final Validator startTimeValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string5())
                     .build();
 
     @JsonIgnore
-    private final transient Validator endTimeValidator =
+    private final Validator endTimeValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string5())
                     .build();
 
     @JsonIgnore
-    private final transient Validator startDateValidator =
+    private final Validator startDateValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string10())
                     .build();
 
     @JsonIgnore
-    private final transient Validator endDateValidator =
+    private final Validator endDateValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string10())
                     .build();

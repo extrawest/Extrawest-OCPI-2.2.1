@@ -19,7 +19,7 @@ import lombok.ToString;
 public class Endpoint implements Validatable {
 
     @JsonIgnore
-    private final transient Validator urlValidator =
+    private final Validator urlValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string255())

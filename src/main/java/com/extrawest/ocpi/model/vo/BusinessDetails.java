@@ -1,8 +1,6 @@
 package com.extrawest.ocpi.model.vo;
 
 import com.extrawest.ocpi.validation.*;
-import com.extrawest.ocpi.validation.*;
-import com.extrawest.ocpi.validation.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
@@ -17,9 +15,9 @@ import lombok.ToString;
 public class BusinessDetails implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
     @JsonIgnore
-    private final transient Validator websiteValidator =
+    private final Validator websiteValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string255())
                     .build();

@@ -3,12 +3,22 @@ package com.extrawest.ocpi.controller.emsp;
 import com.extrawest.ocpi.model.AbstractProfileResult;
 import com.extrawest.ocpi.model.ResponseFormat;
 import com.extrawest.ocpi.model.dto.request.ActiveChargingProfileRequestDTO;
+import com.extrawest.ocpi.service.emsp.EMSPChargingProfilesService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/emsp/api/2.2.1/chargingProfiles")
-public abstract class EMSPChargingProfilesController {
+public class EMSPChargingProfilesController {
+
+    protected final EMSPChargingProfilesService emspChargingProfilesService;
+
+    protected EMSPChargingProfilesController(@Autowired EMSPChargingProfilesService emspChargingProfilesService) {
+        this.emspChargingProfilesService = emspChargingProfilesService;
+    }
 
     /**
      * Receive the asynchronous response from the Charge Point.
@@ -20,9 +30,11 @@ public abstract class EMSPChargingProfilesController {
      * with the data field omitted.
      */
     @PostMapping
-    public abstract ResponseEntity<ResponseFormat> postChargingProfile(
+    public ResponseEntity<ResponseFormat> postChargingProfile(
             @RequestBody AbstractProfileResult abstractProfileResult
-    );
+    ) {
+        return ResponseEntity.ok(emspChargingProfilesService.postChargingProfile(abstractProfileResult));
+    };
 
     /**
      * Receiver (typically CPO) can send an updated ActiveChargingProfile when other inputs have made changes to
@@ -37,9 +49,11 @@ public abstract class EMSPChargingProfilesController {
      * @return The response to the PUT on the eMSP interface SHALL contain the Response Format with the data field omitted.
      */
     @PutMapping("/{session_id}")
-    public abstract ResponseEntity<ResponseFormat> putChargingProfile(
+    public ResponseEntity<ResponseFormat> putChargingProfile(
             @PathVariable(value = "session_id") String sessionId,
-            @RequestBody ActiveChargingProfileRequestDTO activeChargingProfile
-    );
+            @RequestBody @Valid ActiveChargingProfileRequestDTO activeChargingProfile
+    ) {
+        return ResponseEntity.ok(emspChargingProfilesService.putChargingProfile(sessionId, activeChargingProfile));
+    };
 
 }

@@ -21,57 +21,57 @@ import java.time.LocalDateTime;
 public class Token implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     @JsonIgnore
-    private final transient Validator countryCodeValidator =
+    private final Validator countryCodeValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string2())
                     .build();
 
     @JsonIgnore
-    private final transient Validator partyIdValidator =
+    private final Validator partyIdValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string3())
                     .build();
 
     @JsonIgnore
-    private final transient Validator uidValidator =
+    private final Validator uidValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string36())
                     .build();
 
     @JsonIgnore
-    private final transient Validator contractIdValidator =
+    private final Validator contractIdValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string36())
                     .build();
 
     @JsonIgnore
-    private final transient Validator visualNumberValidator =
+    private final Validator visualNumberValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string64())
                     .build();
 
     @JsonIgnore
-    private final transient Validator issuerValidator =
+    private final Validator issuerValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string64())
                     .build();
 
     @JsonIgnore
-    private final transient Validator groupIdValidator =
+    private final Validator groupIdValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string36())
                     .build();
 
     @JsonIgnore
-    private final transient Validator languageValidator =
+    private final Validator languageValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string2())
                     .build();

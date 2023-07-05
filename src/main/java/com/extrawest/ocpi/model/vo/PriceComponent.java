@@ -16,7 +16,7 @@ import lombok.*;
 public class PriceComponent implements Validatable {
 
     @JsonIgnore
-    private final transient Validator<Object> requiredValidator = new RequiredValidator();
+    private final Validator<Object> requiredValidator = new RequiredValidator();
 
     /**
      * Type of tariff dimension.

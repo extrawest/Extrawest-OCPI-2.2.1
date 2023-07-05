@@ -21,7 +21,7 @@ import lombok.ToString;
 public class ChargingProfileResult extends AbstractProfileResult implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     public void setResult(ChargingProfileResultType result) {
         requiredValidator.validate(result);

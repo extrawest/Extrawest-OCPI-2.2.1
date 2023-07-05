@@ -18,7 +18,7 @@ import lombok.ToString;
 public class StopSession extends AbstractCommand implements Validatable {
 
     @JsonIgnore
-    private final transient Validator sessionIdValidator =
+    private final Validator sessionIdValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string36())

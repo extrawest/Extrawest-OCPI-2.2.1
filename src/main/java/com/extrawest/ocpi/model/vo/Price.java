@@ -14,7 +14,7 @@ import lombok.*;
 public class Price implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     /**
      * Price/Cost excluding VAT.

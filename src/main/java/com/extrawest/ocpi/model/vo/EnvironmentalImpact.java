@@ -15,7 +15,7 @@ import lombok.*;
 public class EnvironmentalImpact implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     /**
      * The environmental impact category of this value.

@@ -21,10 +21,10 @@ import lombok.ToString;
 public class SetChargingProfile implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     @JsonIgnore
-    private final transient Validator responseUrlValidator =
+    private final Validator responseUrlValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string255())

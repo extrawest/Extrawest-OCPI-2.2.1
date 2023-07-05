@@ -1,13 +1,22 @@
 package com.extrawest.ocpi.controller.emsp;
 
 import com.extrawest.ocpi.model.dto.SessionDTO;
+import com.extrawest.ocpi.service.emsp.EMSPSessionsService;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/emsp/api/2.2.1/sessions")
-public abstract class EMSPSessionsController {
+public class EMSPSessionsController {
+
+    protected final EMSPSessionsService emspSessionsService;
+
+    public EMSPSessionsController(@Autowired EMSPSessionsService emspSessionsService) {
+        this.emspSessionsService = emspSessionsService;
+    }
 
     /**
      * Retrieve a Session object from the eMSP’s system with Session.id equal to {session_id}.
@@ -17,11 +26,13 @@ public abstract class EMSPSessionsController {
      * @return Requested Session object.
      */
     @GetMapping
-    public abstract ResponseEntity<SessionDTO> getSession(
+    public ResponseEntity<SessionDTO> getSession(
             @RequestParam(value = "country_code") @Max(2) String countryCode,
             @RequestParam(value = "party_id") @Max(3) String partyId,
             @RequestParam(value = "session_id") @Max(36) String sessionId
-    );
+    ) {
+        return ResponseEntity.ok(emspSessionsService.getSession(countryCode, partyId, sessionId));
+    };
 
     /**
      * Send a new/updated Session object to the eMSP.
@@ -33,12 +44,14 @@ public abstract class EMSPSessionsController {
      * @param sessionId id of the new or updated Session object.
      */
     @PutMapping
-    public abstract void putSession(
-            @RequestBody SessionDTO sessionDTO,
+    public void putSession(
+            @RequestBody @Valid SessionDTO sessionDTO,
             @RequestParam(value = "country_code") @Max(2) String countryCode,
             @RequestParam(value = "party_id") @Max(3) String partyId,
             @RequestParam(value = "session_id") @Max(36) String sessionId
-    );
+    ) {
+        emspSessionsService.putSession(sessionDTO, countryCode, partyId, sessionId);
+    };
 
     /**
      * Send a new/updated Session object to the eMSP.
@@ -50,11 +63,13 @@ public abstract class EMSPSessionsController {
      * @param sessionId id of the new or updated Session object.
      */
     @PatchMapping
-    public abstract void patchSession(
-            @RequestBody SessionDTO sessionDTO,
+    public void patchSession(
+            @RequestBody @Valid SessionDTO sessionDTO,
             @RequestParam(value = "country_code") @Max(2) String countryCode,
             @RequestParam(value = "party_id") @Max(3) String partyId,
             @RequestParam(value = "session_id") @Max(36) String sessionId
-    );
+    ) {
+        emspSessionsService.patchSession(sessionDTO, countryCode, partyId, sessionId);
+    };
 
 }

@@ -5,6 +5,8 @@ import com.extrawest.ocpi.validation.Validator;
 import com.extrawest.ocpi.validation.ValidatorBuilder;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public abstract class AbstractCommand {
 
@@ -20,11 +22,13 @@ public abstract class AbstractCommand {
      * contain an unique ID to be able to distinguish between ReserveNow
      * requests.
      */
+    @NotBlank
+    @Size(min = 1, max = 255)
     @JsonProperty("response_url")
     protected String responseUrl;
 
     @JsonIgnore
-    public transient String type;
+    public String type;
 
     public String getType() {
         return this.getClass().getSimpleName();

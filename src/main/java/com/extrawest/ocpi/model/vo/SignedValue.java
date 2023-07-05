@@ -22,21 +22,21 @@ import lombok.ToString;
 public class SignedValue implements Validatable {
 
     @JsonIgnore
-    private final transient Validator natureValidator =
+    private final Validator natureValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string32())
                     .build();
 
     @JsonIgnore
-    private final transient Validator plainDataValidator =
+    private final Validator plainDataValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string512())
                     .build();
 
     @JsonIgnore
-    private final transient Validator signedDataValidator =
+    private final Validator signedDataValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string5000())

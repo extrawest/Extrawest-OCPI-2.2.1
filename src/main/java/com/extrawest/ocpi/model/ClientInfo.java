@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 public class ClientInfo implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     /**
      * CPO or eMSP ID of this party (following the 15118 ISO standard), as used in the credentials exchange.

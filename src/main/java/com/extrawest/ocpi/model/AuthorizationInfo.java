@@ -4,8 +4,6 @@ import com.extrawest.ocpi.model.enums.AllowedType;
 import com.extrawest.ocpi.model.vo.DisplayText;
 import com.extrawest.ocpi.model.vo.LocationReferences;
 import com.extrawest.ocpi.validation.*;
-import com.extrawest.ocpi.validation.*;
-import com.extrawest.ocpi.validation.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
@@ -20,10 +18,10 @@ import lombok.ToString;
 public class AuthorizationInfo implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     @JsonIgnore
-    private final transient Validator authorizationReferenceValidator =
+    private final Validator authorizationReferenceValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string36())
                     .build();

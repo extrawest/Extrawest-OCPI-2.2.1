@@ -2,6 +2,7 @@ package com.extrawest.ocpi.model.dto;
 
 import com.extrawest.ocpi.model.enums.ProfileType;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChargingPreferencesDTO {
+    @NotBlank
     @JsonProperty("profile_type")
     private ProfileType profileType;
     @JsonProperty("departure_time")
