@@ -15,7 +15,7 @@ import java.util.List;
 public class TariffElement implements Validatable {
 
     @JsonIgnore
-    private final transient Validator price_componentsValidator = new ListOfAtLeastOneObjects();
+    private final Validator price_componentsValidator = new ListOfAtLeastOneObjects();
 
     /**
      * List of price components that describe the pricing of a tariff.

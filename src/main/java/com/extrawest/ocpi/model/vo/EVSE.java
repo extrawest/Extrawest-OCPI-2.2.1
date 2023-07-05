@@ -32,30 +32,30 @@ import java.util.List;
 public class EVSE extends AbstractDomainObject implements Validatable {
 
     @JsonIgnore
-    private final transient Validator uidValidator =
+    private final Validator uidValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string36())
                     .build();
     @JsonIgnore
-    private final transient Validator evseIdValidator =
+    private final Validator evseIdValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string48())
                     .build();
     @JsonIgnore
-    private final transient Validator floorLevelValidator =
+    private final Validator floorLevelValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string16())
                     .build();
     @JsonIgnore
-    private final transient Validator physicalReferenceValidator =
+    private final Validator physicalReferenceValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string16())
                     .build();
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
     @JsonIgnore
-    private final transient Validator connectorsValidator = new ListOfAtLeastOneObjects();
+    private final Validator connectorsValidator = new ListOfAtLeastOneObjects();
     /**
      * Uniquely identifies the EVSE within the CPOs platform (and suboperator platforms). For example a
      * database ID or the actual "EVSE ID". This field can never be changed, modified or renamed.

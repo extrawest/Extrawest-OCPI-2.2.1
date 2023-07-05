@@ -20,7 +20,7 @@ import lombok.ToString;
 public class ChargingProfilePeriod implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     /**
      * Start of the period, in seconds from the start of profile.

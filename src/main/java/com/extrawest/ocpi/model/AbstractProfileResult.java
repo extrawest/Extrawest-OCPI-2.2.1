@@ -10,7 +10,7 @@ public abstract class AbstractProfileResult {
     protected ChargingProfileResultType result;
 
     @JsonIgnore
-    public transient String type;
+    public String type;
 
     public String getType() {
         return this.getClass().getSimpleName();

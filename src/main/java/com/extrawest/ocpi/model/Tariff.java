@@ -22,38 +22,38 @@ import java.util.List;
 public class Tariff implements Validatable {
 
     @JsonIgnore
-    private final transient Validator countryCodeValidator =
+    private final Validator countryCodeValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string2())
                     .build();
 
     @JsonIgnore
-    private final transient Validator partyIdValidator =
+    private final Validator partyIdValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string3())
                     .build();
 
     @JsonIgnore
-    private final transient Validator idValidator =
+    private final Validator idValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string36())
                     .build();
 
     @JsonIgnore
-    private final transient Validator currencyValidator =
+    private final Validator currencyValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string3())
                     .build();
 
     @JsonIgnore
-    private final transient Validator elementsValidator = new ListOfAtLeastOneObjects();
+    private final Validator elementsValidator = new ListOfAtLeastOneObjects();
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     /**
      *ISO-3166 alpha-2 country code of the CPO that owns this Tariff.

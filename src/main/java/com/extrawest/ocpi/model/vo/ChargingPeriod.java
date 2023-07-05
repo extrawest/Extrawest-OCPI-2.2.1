@@ -25,10 +25,10 @@ import java.util.List;
 public class ChargingPeriod implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     @JsonIgnore
-    private final transient Validator dimensionsValidator = new ListOfAtLeastOneObjects();
+    private final Validator dimensionsValidator = new ListOfAtLeastOneObjects();
 
     /**
      * Start timestamp of the charging period. A period ends when the next period starts.

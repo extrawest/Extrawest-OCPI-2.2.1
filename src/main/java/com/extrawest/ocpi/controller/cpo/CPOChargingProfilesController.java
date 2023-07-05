@@ -2,12 +2,22 @@ package com.extrawest.ocpi.controller.cpo;
 
 import com.extrawest.ocpi.model.dto.request.SetChargingProfileRequestDTO;
 import com.extrawest.ocpi.model.dto.response.ChargingProfileResponseDTO;
+import com.extrawest.ocpi.service.cpo.CPOChargingProfilesService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/cpo/api/2.2.1/chargingProfiles")
-public abstract class CPOChargingProfilesController {
+public class CPOChargingProfilesController {
+
+    protected final CPOChargingProfilesService cpoChargingProfilesService;
+
+    protected CPOChargingProfilesController(@Autowired CPOChargingProfilesService cpoChargingProfilesService) {
+        this.cpoChargingProfilesService = cpoChargingProfilesService;
+    }
 
     /**
      * Gets the ActiveChargingProfile for a specific charging session.
@@ -20,11 +30,13 @@ public abstract class CPOChargingProfilesController {
      * This is not the response by the Charge Point.
      */
     @GetMapping("/{session_id}/{duration}/{response_url}")
-    public abstract ResponseEntity<ChargingProfileResponseDTO> getChargingProfile(
+    public ResponseEntity<ChargingProfileResponseDTO> getChargingProfile(
             @PathVariable(value = "session_id") String sessionId,
             @PathVariable(value = "duration") Integer duration,
             @PathVariable(value = "response_url") String responseUrl
-    );
+    ) {
+        return ResponseEntity.ok(cpoChargingProfilesService.getChargingProfile(sessionId, duration, responseUrl));
+    };
 
     /**
      * Creates/updates a ChargingProfile for a specific charging session.
@@ -36,10 +48,12 @@ public abstract class CPOChargingProfilesController {
      * This is not the response by the Charge Point.
      */
     @PutMapping("/{session_id}")
-    public abstract ResponseEntity<ChargingProfileResponseDTO> putChargingProfile(
+    public ResponseEntity<ChargingProfileResponseDTO> putChargingProfile(
             @PathVariable(value = "session_id") String sessionId,
-            @RequestBody SetChargingProfileRequestDTO setChargingProfileRequestDTO
-    );
+            @RequestBody @Valid SetChargingProfileRequestDTO setChargingProfileRequestDTO
+    ) {
+        return ResponseEntity.ok(cpoChargingProfilesService.putChargingProfile(sessionId, setChargingProfileRequestDTO));
+    };
 
     /**
      * Cancels an existing ChargingProfile for a specific charging session.
@@ -51,9 +65,11 @@ public abstract class CPOChargingProfilesController {
      * not the response by the Charge Point.
      */
     @DeleteMapping("/{session_id}/{response_url}")
-    public abstract ResponseEntity<ChargingProfileResponseDTO> deleteChargingProfile(
+    public ResponseEntity<ChargingProfileResponseDTO> deleteChargingProfile(
             @PathVariable(value = "session_id") String sessionId,
             @PathVariable(value = "response_url") String responseUrl
-    );
+    ) {
+        return ResponseEntity.ok(cpoChargingProfilesService.deleteChargingProfile(sessionId, responseUrl));
+    };
 
 }

@@ -5,7 +5,10 @@ import com.extrawest.ocpi.validation.ValidationRules;
 import com.extrawest.ocpi.validation.Validator;
 import com.extrawest.ocpi.validation.ValidatorBuilder;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Getter
 @ToString
@@ -14,13 +17,13 @@ import lombok.*;
 public class DisplayText implements Validatable {
 
     @JsonIgnore
-    private final transient Validator languageValidator =
+    private final Validator languageValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string2())
                     .build();
     @JsonIgnore
-    private final transient Validator textValidator =
+    private final Validator textValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string512())

@@ -18,7 +18,7 @@ import lombok.ToString;
 public class Version implements Validatable {
 
     @JsonIgnore
-    private final transient Validator urlValidator =
+    private final Validator urlValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string255())

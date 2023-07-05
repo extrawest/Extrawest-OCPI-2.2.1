@@ -23,7 +23,7 @@ import java.util.List;
 public class LocationReferences implements Validatable {
 
     @JsonIgnore
-    private final transient Validator locationIdValidator =
+    private final Validator locationIdValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string36())

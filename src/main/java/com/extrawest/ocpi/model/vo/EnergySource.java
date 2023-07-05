@@ -16,7 +16,7 @@ import lombok.*;
 public class EnergySource implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     /**
      * The type of energy source.

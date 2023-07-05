@@ -1,9 +1,10 @@
 package com.extrawest.ocpi.model.vo;
 
 import com.extrawest.ocpi.model.enums.Status;
-import com.extrawest.ocpi.validation.Validatable;
 import com.extrawest.ocpi.validation.RequiredValidator;
+import com.extrawest.ocpi.validation.Validatable;
 import com.extrawest.ocpi.validation.Validator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -20,6 +21,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class StatusSchedule implements Validatable {
 
+    @JsonIgnore
     private final Validator<Object> requiredValidator = new RequiredValidator();
 
     /**
