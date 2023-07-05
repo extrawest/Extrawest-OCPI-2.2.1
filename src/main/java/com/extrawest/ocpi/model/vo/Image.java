@@ -18,24 +18,24 @@ import lombok.ToString;
 public class Image implements Validatable {
 
     @JsonIgnore
-    private final transient Validator urlValidator =
+    private final Validator urlValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string255())
                     .build();
     @JsonIgnore
-    private final transient Validator thumbnailValidator =
+    private final Validator thumbnailValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string255())
                     .build();
     @JsonIgnore
-    private final transient Validator typeValidator =
+    private final Validator typeValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string4())
                     .build();
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     /**
      * URL from where the image data can be fetched through a web browser.

@@ -25,7 +25,7 @@ import java.util.List;
 public class ChargingProfile implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     /**
      * Starting point of an absolute profile. If absent the profile will be relative to start of charging.

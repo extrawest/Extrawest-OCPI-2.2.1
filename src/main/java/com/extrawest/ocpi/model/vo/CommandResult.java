@@ -18,7 +18,7 @@ import lombok.ToString;
 public class CommandResult implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     /**
      * Result of the command request as sent by the Charge Point to the CPO.

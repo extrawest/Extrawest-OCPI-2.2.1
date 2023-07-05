@@ -21,13 +21,13 @@ import lombok.ToString;
 public class RegularHours implements Validatable {
 
     @JsonIgnore
-    private final transient Validator weekdayValidator =
+    private final Validator weekdayValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string1())
                     .build();
     @JsonIgnore
-    private final transient Validator periodValidator =
+    private final Validator periodValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string5())

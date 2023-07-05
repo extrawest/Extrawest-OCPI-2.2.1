@@ -23,17 +23,17 @@ import java.util.List;
 public class SignedData implements Validatable {
 
     @JsonIgnore
-    private final transient Validator encodingMethodValidator =
+    private final Validator encodingMethodValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string36())
                     .build();
 
     @JsonIgnore
-    private final transient Validator signedValuesValidator = new ListOfAtLeastOneObjects();
+    private final Validator signedValuesValidator = new ListOfAtLeastOneObjects();
 
     @JsonIgnore
-    private final transient Validator urlValidator =
+    private final Validator urlValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string512())
                     .build();

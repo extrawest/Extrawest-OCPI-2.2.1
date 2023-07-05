@@ -23,14 +23,14 @@ import lombok.ToString;
 public class EnergyContract implements Validatable {
 
     @JsonIgnore
-    private final transient Validator supplierNameValidator =
+    private final Validator supplierNameValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string64())
                     .build();
 
     @JsonIgnore
-    private final transient Validator contractIdValidator =
+    private final Validator contractIdValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string64())
                     .build();
