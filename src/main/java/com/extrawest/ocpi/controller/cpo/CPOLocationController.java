@@ -2,6 +2,8 @@ package com.extrawest.ocpi.controller.cpo;
 
 import com.extrawest.ocpi.model.AbstractDomainObject;
 import com.extrawest.ocpi.model.dto.LocationDTO;
+import com.extrawest.ocpi.service.cpo.CPOLocationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +15,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/cpo/api/2.2.1/locations")
-public abstract class CPOLocationController {
+public class CPOLocationController {
+
+    protected final CPOLocationService cpoLocationService;
+
+    protected CPOLocationController(@Autowired CPOLocationService cpoLocationService) {
+        this.cpoLocationService = cpoLocationService;
+    }
 
     /**
      * Fetch a list of Locations, last updated between the {date_from} and {date_to} (paginated)
@@ -23,13 +31,15 @@ public abstract class CPOLocationController {
      * @param limit Maximum number of objects to GET.
      * @return List of all Locations with valid EVSEs.
      */
-    @GetMapping
-    public abstract ResponseEntity<List<LocationDTO>> getLocations(
+    @GetMapping("/getLocations")
+    public ResponseEntity<List<LocationDTO>> getLocations(
             @RequestParam(value = "date_from", required = false) LocalDateTime dateFrom,
             @RequestParam(value = "date_to", required = false) LocalDateTime dateTo,
             @RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset,
             @RequestParam(value = "limit", required = false) Integer limit
-    );
+    ) {
+        return ResponseEntity.ok(cpoLocationService.getLocations(dateFrom, dateTo, offset, limit));
+    };
 
     /**
      * Get a specific Location, EVSE or Connector.
@@ -42,9 +52,11 @@ public abstract class CPOLocationController {
      *      Connector - If a Connector object was requested: the Connector object.
      */
     @GetMapping
-    public abstract ResponseEntity<AbstractDomainObject> getLocationEvseController(
+    public ResponseEntity<AbstractDomainObject> getLocationEvseController(
             @RequestParam(value = "location_id") String locationId,
             @RequestParam(value = "evse_uid", required = false) String evseUid,
             @RequestParam(value = "connector_id", required = false) String connectorId
-    );
+    ) {
+        return ResponseEntity.ok(cpoLocationService.getLocationEvseController(locationId, evseUid, connectorId));
+    };
 }

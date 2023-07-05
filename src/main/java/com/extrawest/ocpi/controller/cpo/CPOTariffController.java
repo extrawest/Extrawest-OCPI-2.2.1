@@ -1,8 +1,8 @@
 package com.extrawest.ocpi.controller.cpo;
 
 import com.extrawest.ocpi.model.dto.TariffDTO;
-import com.extrawest.ocpi.service.TariffService;
-import org.springframework.http.HttpStatusCode;
+import com.extrawest.ocpi.service.cpo.CPOTariffService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +16,10 @@ import java.util.List;
 @RequestMapping("/cpo/api/2.2.1/tariffs")
 public class CPOTariffController {
 
-    protected final TariffService tariffService;
+    protected final CPOTariffService CPOTariffService;
 
-    public CPOTariffController(TariffService tariffService) {
-        this.tariffService = tariffService;
+    public CPOTariffController(@Autowired CPOTariffService CPOTariffService) {
+        this.CPOTariffService = CPOTariffService;
     }
 
     /**
@@ -37,6 +37,6 @@ public class CPOTariffController {
             @RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset,
             @RequestParam(value = "limit", required = false) Integer limit
     ) {
-        return new ResponseEntity<>(tariffService.getAll(), HttpStatusCode.valueOf(200));
+        return ResponseEntity.ok(CPOTariffService.getAll(dateFrom, dateTo, offset, limit));
     };
 }

@@ -2,12 +2,21 @@ package com.extrawest.ocpi.controller.emsp;
 
 import com.extrawest.ocpi.model.AbstractDomainObject;
 import com.extrawest.ocpi.model.dto.LocationDTO;
+import com.extrawest.ocpi.service.emsp.EMSPLocationService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/emsp/api/2.2.1/locations")
-public abstract class EMSPLocationController {
+public class EMSPLocationController {
+
+    protected final EMSPLocationService emspLocationService;
+
+    public EMSPLocationController(@Autowired EMSPLocationService emspLocationService) {
+        this.emspLocationService = emspLocationService;
+    }
 
     /**
      * Retrieve a Location as it is stored in the eMSP system.
@@ -22,13 +31,16 @@ public abstract class EMSPLocationController {
      *      Connector - If a Connector object was requested: the Connector object.
      */
     @GetMapping
-    public abstract ResponseEntity<AbstractDomainObject> getLocationEvseController(
+    public ResponseEntity<AbstractDomainObject> getLocationEvseController(
             @RequestParam(value = "country_code") String countryCode,
             @RequestParam(value = "party_id") String party_id,
             @RequestParam(value = "location_id") String locationId,
             @RequestParam(value = "evse_uid", required = false) String evseUid,
             @RequestParam(value = "connector_id", required = false) String connectorId
-    );
+    ) {
+        return ResponseEntity.ok(emspLocationService.getLocationEvseController(
+                countryCode, party_id, locationId, evseUid, connectorId));
+    };
 
     /**
      * The CPO pushes available Location, EVSE or Connector objects to the eMSP. PUT can be used to send
@@ -44,14 +56,16 @@ public abstract class EMSPLocationController {
      * @param connectorId Connector.id, required when a Connector object is pushed.
      */
     @PutMapping
-    public abstract void pushLocation(
-            @RequestBody LocationDTO locationDTO,
+    public void pushLocation(
+            @RequestBody @Valid LocationDTO locationDTO,
             @RequestParam(value = "country_code") String countryCode,
             @RequestParam(value = "party_id") String party_id,
             @RequestParam(value = "location_id") String locationId,
             @RequestParam(value = "evse_uid", required = false) String evseUid,
             @RequestParam(value = "connector_id", required = false) String connectorId
-    );
+    ) {
+        emspLocationService.pushLocation(locationDTO, countryCode, party_id, locationId, evseUid, connectorId);
+    };
 
     /**
      * The CPO pushes available Location, EVSE or Connector objects to the eMSP. PUT can be used to send
@@ -67,13 +81,15 @@ public abstract class EMSPLocationController {
      * @param connectorId Connector.id, required when a Connector object is pushed.
      */
     @PatchMapping
-    public abstract void  patchLocation(
-            @RequestBody LocationDTO locationDTO,
+    public void  patchLocation(
+            @RequestBody @Valid LocationDTO locationDTO,
             @RequestParam(value = "country_code") String countryCode,
             @RequestParam(value = "party_id") String party_id,
             @RequestParam(value = "location_id") String locationId,
             @RequestParam(value = "evse_uid", required = false) String evseUid,
             @RequestParam(value = "connector_id", required = false) String connectorId
-    );
+    ) {
+        emspLocationService.patchLocation(locationDTO, countryCode, party_id, locationId, evseUid, connectorId);
+    };
 
 }
