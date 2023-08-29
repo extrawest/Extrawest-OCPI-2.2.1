@@ -19,7 +19,7 @@ import lombok.ToString;
 public class CdrDimension implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     /**
      * Type of CDR dimension.

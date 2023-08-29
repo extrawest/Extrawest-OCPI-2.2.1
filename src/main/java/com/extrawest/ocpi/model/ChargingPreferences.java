@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 public class ChargingPreferences implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     /**
      * Type of Smart Charging Profile selected by the driver. The ProfileType has to be supported at the Connector

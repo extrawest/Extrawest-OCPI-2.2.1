@@ -23,13 +23,13 @@ import lombok.ToString;
 public class AdditionalGeoLocation implements Validatable {
 
     @JsonIgnore
-    private final transient Validator latitudeValidator =
+    private final Validator latitudeValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string10())
                     .build();
     @JsonIgnore
-    private final transient Validator longitudeValidator =
+    private final Validator longitudeValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string11())

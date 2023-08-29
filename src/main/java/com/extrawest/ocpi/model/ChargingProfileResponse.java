@@ -21,7 +21,7 @@ import lombok.ToString;
 public class ChargingProfileResponse implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     /**
      * Response from the CPO on the ChargingProfile request.

@@ -20,7 +20,7 @@ import java.util.List;
 public class CommandResponse implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     /**
      * Response from the CPO on the command request.

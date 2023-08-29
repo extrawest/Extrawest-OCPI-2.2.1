@@ -1,0 +1,2557 @@
+openapi: 3.0.1
+info:
+  title: OCPI 2.2.1
+  description: This API exposes endpoints to manage OCPI entities.
+  termsOfService: 'https://extrawest.com'
+  contact:
+    name: Extrawest
+    url: 'https://extrawest.com'
+    email: ocpi@extrawest.com
+  license:
+    name: MIT License
+    url: 'https://choosealicense.com/licenses/mit/'
+  version: '1.0'
+servers:
+  - url: 'http://localhost:8080'
+    description: Server URL in Development environment
+  - url: 'https://extrawest-api.com'
+    description: Server URL in Production environment
+paths:
+  /emsp/api/2.2.1/tariffs:
+    get:
+      tags:
+        - emsp-tariff-controller
+      operationId: getTariff
+      parameters:
+        - name: country_code
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: party_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: tariff_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TariffDTO'
+    put:
+      tags:
+        - emsp-tariff-controller
+      operationId: saveTariff
+      parameters:
+        - name: country_code
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: party_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: tariff_id
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TariffDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+    delete:
+      tags:
+        - emsp-tariff-controller
+      operationId: deleteTariff
+      parameters:
+        - name: country_code
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: party_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: tariff_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /emsp/api/2.2.1/sessions:
+    get:
+      tags:
+        - emsp-sessions-controller
+      operationId: getSession
+      parameters:
+        - name: country_code
+          in: query
+          required: true
+          schema:
+            maximum: 2
+            type: string
+        - name: party_id
+          in: query
+          required: true
+          schema:
+            maximum: 3
+            type: string
+        - name: session_id
+          in: query
+          required: true
+          schema:
+            maximum: 36
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SessionDTO'
+    put:
+      tags:
+        - emsp-sessions-controller
+      operationId: putSession
+      parameters:
+        - name: country_code
+          in: query
+          required: true
+          schema:
+            maximum: 2
+            type: string
+        - name: party_id
+          in: query
+          required: true
+          schema:
+            maximum: 3
+            type: string
+        - name: session_id
+          in: query
+          required: true
+          schema:
+            maximum: 36
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+    patch:
+      tags:
+        - emsp-sessions-controller
+      operationId: patchSession
+      parameters:
+        - name: country_code
+          in: query
+          required: true
+          schema:
+            maximum: 2
+            type: string
+        - name: party_id
+          in: query
+          required: true
+          schema:
+            maximum: 3
+            type: string
+        - name: session_id
+          in: query
+          required: true
+          schema:
+            maximum: 36
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+  /emsp/api/2.2.1/locations:
+    get:
+      tags:
+        - emsp-location-controller
+      operationId: getLocationEvseController
+      parameters:
+        - name: country_code
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: party_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: location_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: evse_uid
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: connector_id
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AbstractDomainObject'
+    put:
+      tags:
+        - emsp-location-controller
+      operationId: pushLocation
+      parameters:
+        - name: country_code
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: party_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: location_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: evse_uid
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: connector_id
+          in: query
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+    patch:
+      tags:
+        - emsp-location-controller
+      operationId: patchLocation
+      parameters:
+        - name: country_code
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: party_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: location_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: evse_uid
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: connector_id
+          in: query
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+  /emsp/api/2.2.1/credentials:
+    get:
+      tags:
+        - emsp-credentials-controller
+      operationId: getCredentials
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CredentialsDTO'
+    put:
+      tags:
+        - emsp-credentials-controller
+      operationId: putCredentials
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CredentialsDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+    post:
+      tags:
+        - emsp-credentials-controller
+      operationId: postCredentials
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CredentialsDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+    delete:
+      tags:
+        - emsp-credentials-controller
+      operationId: deleteCredentials
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CredentialsDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+  '/emsp/api/2.2.1/chargingProfiles/{session_id}':
+    put:
+      tags:
+        - emsp-charging-profiles-controller
+      operationId: putChargingProfile
+      parameters:
+        - name: session_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActiveChargingProfileRequestDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseFormat'
+  '/cpo/api/2.2.1/tokens/{country_code}/{party_id}/{token_uid}/{type}':
+    get:
+      tags:
+        - cpo-tokens-controller
+      operationId: getToken_1
+      parameters:
+        - name: country_code
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: party_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: token_uid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: type
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - AD_HOC_USER
+              - APP_USER
+              - OTHER
+              - RFID
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenDTO'
+    put:
+      tags:
+        - cpo-tokens-controller
+      operationId: putToken
+      parameters:
+        - name: country_code
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: party_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: token_uid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: type
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - AD_HOC_USER
+              - APP_USER
+              - OTHER
+              - RFID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+    patch:
+      tags:
+        - cpo-tokens-controller
+      operationId: patchToken
+      parameters:
+        - name: country_code
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: party_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: token_uid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: type
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - AD_HOC_USER
+              - APP_USER
+              - OTHER
+              - RFID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+  /cpo/api/2.2.1/sessions:
+    get:
+      tags:
+        - cpo-sessions-controller
+      operationId: getSessions
+      parameters:
+        - name: date_from
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: date_to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SessionDTO'
+    put:
+      tags:
+        - cpo-sessions-controller
+      operationId: putChargingPreferences
+      parameters:
+        - name: session_id
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChargingPreferencesDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ChargingPreferencesDTO'
+  /cpo/api/2.2.1/credentials:
+    get:
+      tags:
+        - cpo-credentials-controller
+      operationId: getCredentials_1
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CredentialsDTO'
+    put:
+      tags:
+        - cpo-credentials-controller
+      operationId: putCredentials_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CredentialsDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+    post:
+      tags:
+        - cpo-credentials-controller
+      operationId: postCredentials_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CredentialsDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+    delete:
+      tags:
+        - cpo-credentials-controller
+      operationId: deleteCredentials_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CredentialsDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+  '/cpo/api/2.2.1/chargingProfiles/{session_id}':
+    put:
+      tags:
+        - cpo-charging-profiles-controller
+      operationId: putChargingProfile_1
+      parameters:
+        - name: session_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetChargingProfileRequestDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ChargingProfileResponseDTO'
+  '/api/2.2.1/hubClientInfo/{country_code}/{party_id}':
+    get:
+      tags:
+        - client-info-controller
+      operationId: getHubClientInfo
+      parameters:
+        - name: country_code
+          in: path
+          required: true
+          schema:
+            maximum: 2
+            type: string
+        - name: party_id
+          in: path
+          required: true
+          schema:
+            maximum: 3
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ClientInfoDTO'
+    put:
+      tags:
+        - client-info-controller
+      operationId: putHubClientInfo
+      parameters:
+        - name: country_code
+          in: path
+          required: true
+          schema:
+            maximum: 2
+            type: string
+        - name: party_id
+          in: path
+          required: true
+          schema:
+            maximum: 3
+            type: string
+      responses:
+        '200':
+          description: OK
+  '/emsp/api/2.2.1/tokens/{token_uid}/{type}':
+    post:
+      tags:
+        - emsp-token-controller
+      operationId: postToken
+      parameters:
+        - name: token_uid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: type
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationReferencesRequestDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthorizationInfoResponseDTO'
+  /emsp/api/2.2.1/chargingProfiles:
+    post:
+      tags:
+        - emsp-charging-profiles-controller
+      operationId: postChargingProfile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AbstractProfileResult'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseFormat'
+  /emsp/api/2.2.1/cdr:
+    post:
+      tags:
+        - emsp-cdr-controller
+      operationId: postCdr
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CdrDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  '/cpo/api/2.2.1/commands/{command}':
+    post:
+      tags:
+        - cpo-commands-controller
+      operationId: postCommand
+      parameters:
+        - name: command
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - CANCEL_RESERVATION
+              - RESERVE_NOW
+              - START_SESSION
+              - STOP_SESSION
+              - UNLOCK_CONNECTOR
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AbstractCommand'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CommandResponseDTO'
+  '/emsp/api/2.2.1/versions/details/{version}':
+    get:
+      tags:
+        - emsp-version-controller
+      operationId: getVersionDetails
+      parameters:
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - '2.0'
+              - '2.1'
+              - 2.1.1
+              - '2.2'
+              - 2.2.1
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/VersionDetailsResponseDTO'
+  '/emsp/api/2.2.1/tokens/{date_from}/{date_to}/{offset}/{limit}':
+    get:
+      tags:
+        - emsp-token-controller
+      operationId: getToken
+      parameters:
+        - name: date_from
+          in: path
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: date_to
+          in: path
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: offset
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TokenDTO'
+  '/emsp/api/2.2.1/cdr/{id}':
+    get:
+      tags:
+        - emsp-cdr-controller
+      operationId: getCdr
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CdrDTO'
+  /cpo/api/2.2.1/versions:
+    get:
+      tags:
+        - cpo-version-controller
+      operationId: getVersion
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VersionResponseDTO'
+  '/cpo/api/2.2.1/versions/details/{version}':
+    get:
+      tags:
+        - cpo-version-controller
+      operationId: getVersionDetails_1
+      parameters:
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - '2.0'
+              - '2.1'
+              - 2.1.1
+              - '2.2'
+              - 2.2.1
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/VersionDetailsResponseDTO'
+  /cpo/api/2.2.1/tariffs:
+    get:
+      tags:
+        - cpo-tariff-controller
+      operationId: getTariffs
+      parameters:
+        - name: date_from
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: date_to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TariffDTO'
+  /cpo/api/2.2.1/locations:
+    get:
+      tags:
+        - cpo-location-controller
+      operationId: getLocationEvseController_1
+      parameters:
+        - name: location_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: evse_uid
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: connector_id
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AbstractDomainObject'
+  /cpo/api/2.2.1/locations/getLocations:
+    get:
+      tags:
+        - cpo-location-controller
+      operationId: getLocations
+      parameters:
+        - name: date_from
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: date_to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LocationDTO'
+  '/cpo/api/2.2.1/chargingProfiles/{session_id}/{duration}/{response_url}':
+    get:
+      tags:
+        - cpo-charging-profiles-controller
+      operationId: getChargingProfile
+      parameters:
+        - name: session_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: duration
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: response_url
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ChargingProfileResponseDTO'
+  /cpo/api/2.2.1/cdr:
+    get:
+      tags:
+        - cpo-cdr-controller
+      operationId: getCdr_1
+      parameters:
+        - name: date_from
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: date_to
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: offset
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CdrDTO'
+  '/cpo/api/2.2.1/chargingProfiles/{session_id}/{response_url}':
+    delete:
+      tags:
+        - cpo-charging-profiles-controller
+      operationId: deleteChargingProfile
+      parameters:
+        - name: session_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: response_url
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ChargingProfileResponseDTO'
+components:
+  schemas:
+    DisplayText:
+      type: object
+      properties:
+        language:
+          type: string
+        text:
+          type: string
+    EnergyMix:
+      type: object
+      properties:
+        is_green_energy:
+          type: boolean
+        energy_sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnergySource'
+        environ_impact:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvironmentalImpact'
+        supplier_name:
+          type: string
+        energy_product_name:
+          type: string
+    EnergySource:
+      type: object
+      properties:
+        source:
+          type: string
+          enum:
+            - NUCLEAR
+            - GENERAL_FOSSIL
+            - COAL
+            - GAS
+            - GENERAL_GREEN
+            - SOLAR
+            - WIND
+            - WATER
+        percentage:
+          type: number
+          format: float
+    EnvironmentalImpact:
+      type: object
+      properties:
+        category:
+          type: string
+          enum:
+            - NUCLEAR_WASTE
+            - CARBON_DIOXIDE
+        amount:
+          type: number
+          format: float
+    Price:
+      type: object
+      properties:
+        exclVat:
+          type: number
+          format: float
+        inclVat:
+          type: number
+          format: float
+    PriceComponent:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - ENERGY
+            - FLAT
+            - PARKING_TIME
+            - TIME
+        price:
+          type: number
+          format: float
+        vat:
+          type: number
+          format: float
+        step_size:
+          type: integer
+          format: int32
+    TariffDTO:
+      required:
+        - country_code
+        - currency
+        - elements
+        - id
+        - last_updated
+        - party_id
+      type: object
+      properties:
+        id:
+          maxLength: 36
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        currency:
+          maxLength: 3
+          minLength: 1
+          type: string
+        type:
+          type: string
+          enum:
+            - AD_HOC_PAYMENT
+            - PROFILE_CHEAP
+            - PROFILE_FAST
+            - REGULAR
+            - PROFILE_GREEN
+        elements:
+          type: array
+          items:
+            $ref: '#/components/schemas/TariffElement'
+        country_code:
+          maxLength: 2
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        party_id:
+          maxLength: 3
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        tariff_alt_text:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisplayText'
+        tariff_alt_url:
+          type: string
+        min_price:
+          $ref: '#/components/schemas/Price'
+        max_price:
+          $ref: '#/components/schemas/Price'
+        start_date_time:
+          type: string
+          format: date-time
+        end_date_time:
+          type: string
+          format: date-time
+        energy_mix:
+          $ref: '#/components/schemas/EnergyMix'
+        last_updated:
+          type: string
+          format: date-time
+    TariffElement:
+      type: object
+      properties:
+        price_components:
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceComponent'
+        restrictions:
+          $ref: '#/components/schemas/TariffRestrictions'
+    TariffRestrictions:
+      type: object
+      properties:
+        reservation:
+          type: string
+          enum:
+            - RESERVATION
+            - RESERVATION_EXPIRES
+        start_time:
+          type: string
+        end_time:
+          type: string
+        start_date:
+          type: string
+        end_date:
+          type: string
+        min_kwh:
+          type: number
+          format: float
+        max_kwh:
+          type: number
+          format: float
+        min_current:
+          type: number
+          format: float
+        max_current:
+          type: number
+          format: float
+        min_power:
+          type: number
+          format: float
+        max_power:
+          type: number
+          format: float
+        min_duration:
+          type: integer
+          format: int32
+        max_duration:
+          type: integer
+          format: int32
+        day_of_week:
+          type: array
+          items:
+            type: string
+            enum:
+              - MONDAY
+              - TUESDAY
+              - WEDNESDAY
+              - THURSDAY
+              - FRIDAY
+              - SATURDAY
+              - SUNDAY
+    CdrDimension:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - CURRENT
+            - ENERGY
+            - ENERGY_EXPORT
+            - ENERGY_IMPORT
+            - MAX_CURRENT
+            - MIN_CURRENT
+            - MAX_POWER
+            - MIN_POWER
+            - PARKING_TIME
+            - POWER
+            - RESERVATION_TIME
+            - STATE_OF_CHARGE
+            - TIME
+        volume:
+          type: number
+          format: float
+    CdrToken:
+      type: object
+      properties:
+        country_code:
+          type: string
+        party_id:
+          type: string
+        uid:
+          type: string
+        type:
+          type: string
+          enum:
+            - AD_HOC_USER
+            - APP_USER
+            - OTHER
+            - RFID
+        contract_id:
+          type: string
+    ChargingPeriod:
+      type: object
+      properties:
+        start_date_time:
+          type: string
+          format: date-time
+        dimensions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CdrDimension'
+        tariff_id:
+          type: string
+    SessionDTO:
+      required:
+        - auth_method
+        - cdr_token
+        - connector_id
+        - country_code
+        - currency
+        - evse_uid
+        - id
+        - kwh
+        - last_updated
+        - location_id
+        - party_id
+        - start_date_time
+        - status
+      type: object
+      properties:
+        country_code:
+          maxLength: 2
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        party_id:
+          maxLength: 3
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        id:
+          maxLength: 36
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        start_date_time:
+          type: string
+          format: date-time
+        end_date_time:
+          type: string
+          format: date-time
+        kwh:
+          type: number
+          format: float
+        cdr_token:
+          $ref: '#/components/schemas/CdrToken'
+        auth_method:
+          type: string
+          enum:
+            - AUTH_REQUEST
+            - COMMAND
+            - WHITELIST
+        authorization_reference:
+          maxLength: 36
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        location_id:
+          maxLength: 36
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        evse_uid:
+          maxLength: 36
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        connector_id:
+          maxLength: 36
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        meter_id:
+          maxLength: 255
+          minLength: 1
+          type: string
+        currency:
+          maxLength: 3
+          minLength: 1
+          type: string
+        charging_periods:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChargingPeriod'
+        total_cost:
+          $ref: '#/components/schemas/Price'
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - COMPLETED
+            - INVALID
+            - PENDING
+            - RESERVATION
+        last_updated:
+          type: string
+          format: date-time
+    AdditionalGeoLocation:
+      type: object
+      properties:
+        latitude:
+          type: string
+        longitude:
+          type: string
+        name:
+          $ref: '#/components/schemas/DisplayText'
+    BusinessDetails:
+      type: object
+      properties:
+        name:
+          type: string
+        website:
+          type: string
+        logo:
+          $ref: '#/components/schemas/Image'
+    Connector:
+      type: object
+      properties:
+        url:
+          type: string
+          writeOnly: true
+        id:
+          type: string
+        standard:
+          type: string
+          enum:
+            - CHADEMO
+            - CHAOJI
+            - DOMESTIC_A
+            - DOMESTIC_B
+            - DOMESTIC_C
+            - DOMESTIC_D
+            - DOMESTIC_E
+            - DOMESTIC_F
+            - DOMESTIC_G
+            - DOMESTIC_H
+            - DOMESTIC_I
+            - DOMESTIC_J
+            - DOMESTIC_K
+            - DOMESTIC_L
+            - DOMESTIC_M
+            - DOMESTIC_N
+            - DOMESTIC_O
+            - GBT_AC
+            - GBT_DC
+            - IEC_60309_2_single_16
+            - IEC_60309_2_three_16
+            - IEC_60309_2_three_32
+            - IEC_60309_2_three_64
+            - IEC_62196_T1
+            - IEC_62196_T1_COMBO
+            - IEC_62196_T2
+            - IEC_62196_T2_COMBO
+            - IEC_62196_T3A
+            - IEC_62196_T3C
+            - NEMA_5_20
+            - NEMA_6_30
+            - NEMA_6_50
+            - NEMA_10_30
+            - NEMA_10_50
+            - NEMA_14_30
+            - NEMA_14_50
+            - PANTOGRAPH_BOTTOM_UP
+            - PANTOGRAPH_TOP_DOWN
+            - TESLA_R
+            - TESLA_S
+        format:
+          type: string
+          enum:
+            - SOCKET
+            - CABLE
+        power_type:
+          type: string
+          enum:
+            - AC_1_PHASE
+            - AC_2_PHASE
+            - AC_2_PHASE_SPLIT
+            - AC_3_PHASE
+            - DC
+        max_voltage:
+          type: integer
+          format: int32
+        max_amperage:
+          type: integer
+          format: int32
+        max_electric_power:
+          type: integer
+          format: int32
+        tariff_ids:
+          type: array
+          items:
+            type: string
+        terms_and_conditions:
+          type: string
+        last_updated:
+          type: string
+          format: date-time
+    EVSE:
+      type: object
+      properties:
+        uid:
+          type: string
+        evse_id:
+          type: string
+        status:
+          type: string
+          enum:
+            - AVAILABLE
+            - BLOCKED
+            - CHARGING
+            - INOPERATIVE
+            - OUTOFORDER
+            - PLANNED
+            - REMOVED
+            - RESERVED
+            - UNKNOWN
+        status_schedule:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatusSchedule'
+        capabilities:
+          type: array
+          items:
+            type: string
+            enum:
+              - CHARGING_PROFILE_CAPABLE
+              - CHARGING_PREFERENCES_CAPABLE
+              - CHIP_CARD_SUPPORT
+              - CONTACTLESS_CARD_SUPPORT
+              - CREDIT_CARD_PAYABLE
+              - DEBIT_CARD_PAYABLE
+              - PED_TERMINAL
+              - REMOTE_START_STOP_CAPABLE
+              - RESERVABLE
+              - RFID_READER
+              - START_SESSION_CONNECTOR_REQUIRED
+              - TOKEN_GROUP_CAPABLE
+              - UNLOCK_CAPABLE
+        connectors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Connector'
+        floor_level:
+          type: string
+        coordinates:
+          $ref: '#/components/schemas/GeoLocation'
+        physical_reference:
+          type: string
+        directions:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisplayText'
+        parking_restrictions:
+          type: array
+          items:
+            type: string
+            enum:
+              - EV_ONLY
+              - PLUGGED
+              - DISABLED
+              - CUSTOMERS
+              - MOTORCYCLES
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+        last_updated:
+          type: string
+          format: date-time
+    ExceptionalPeriod:
+      type: object
+      properties:
+        period_begin:
+          type: string
+          format: date-time
+        period_end:
+          type: string
+          format: date-time
+    GeoLocation:
+      type: object
+      properties:
+        latitude:
+          type: string
+        longitude:
+          type: string
+    Hours:
+      type: object
+      properties:
+        twentyfourseven:
+          type: boolean
+        regular_hours:
+          type: array
+          items:
+            $ref: '#/components/schemas/RegularHours'
+        exceptional_openings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExceptionalPeriod'
+        exceptional_closings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExceptionalPeriod'
+    Image:
+      type: object
+      properties:
+        url:
+          type: string
+        thumbnail:
+          type: string
+        category:
+          type: string
+          enum:
+            - CHARGER
+            - ENTRANCE
+            - LOCATION
+            - NETWORK
+            - OPERATOR
+            - OTHER
+            - OWNER
+        type:
+          type: string
+        width:
+          type: string
+        height:
+          type: string
+    LocationDTO:
+      required:
+        - coordinates
+        - country_code
+        - id
+        - last_updated
+        - party_id
+        - publish
+        - time_zone
+      type: object
+      properties:
+        id:
+          maxLength: 36
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        publish:
+          type: boolean
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        address:
+          maxLength: 45
+          minLength: 1
+          type: string
+        city:
+          maxLength: 45
+          minLength: 1
+          type: string
+        state:
+          maxLength: 20
+          minLength: 1
+          type: string
+        country:
+          maxLength: 3
+          minLength: 1
+          type: string
+        coordinates:
+          $ref: '#/components/schemas/GeoLocation'
+        evses:
+          type: array
+          items:
+            $ref: '#/components/schemas/EVSE'
+        directions:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisplayText'
+        operator:
+          $ref: '#/components/schemas/BusinessDetails'
+        subOperator:
+          $ref: '#/components/schemas/BusinessDetails'
+        owner:
+          $ref: '#/components/schemas/BusinessDetails'
+        facilities:
+          type: array
+          items:
+            type: string
+            enum:
+              - HOTEL
+              - RESTAURANT
+              - CAFE
+              - MALL
+              - SUPERMARKET
+              - SPORT
+              - RECREATION_AREA
+              - NATURE
+              - MUSEUM
+              - BIKE_SHARING
+              - BUS_STOP
+              - TAXI_STAND
+              - TRAM_STOP
+              - METRO_STATION
+              - TRAIN_STATION
+              - AIRPORT
+              - PARKING_LOT
+              - CARPOOL_PARKING
+              - FUEL_STATION
+              - WIFI
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+        country_code:
+          maxLength: 2
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        party_id:
+          maxLength: 3
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        publish_allowed_to:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublishTokenType'
+        postal_code:
+          maxLength: 10
+          minLength: 1
+          type: string
+        related_locations:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalGeoLocation'
+        parking_type:
+          type: string
+          enum:
+            - ALONG_MOTORWAY
+            - PARKING_GARAGE
+            - PARKING_LOT
+            - ON_DRIVEWAY
+            - ON_STREET
+            - UNDERGROUND_GARAGE
+        time_zone:
+          maxLength: 255
+          minLength: 1
+          type: string
+        opening_times:
+          $ref: '#/components/schemas/Hours'
+        charging_when_closed:
+          type: boolean
+        energy_mix:
+          $ref: '#/components/schemas/EnergyMix'
+        last_updated:
+          type: string
+          format: date-time
+    PublishTokenType:
+      type: object
+      properties:
+        uid:
+          type: string
+        type:
+          type: string
+          enum:
+            - AD_HOC_USER
+            - APP_USER
+            - OTHER
+            - RFID
+        visual_number:
+          type: string
+        issuer:
+          type: string
+        group_id:
+          type: string
+    RegularHours:
+      type: object
+      properties:
+        weekday:
+          type: integer
+          format: int32
+        period_begin:
+          type: string
+        period_end:
+          type: string
+    StatusSchedule:
+      type: object
+      properties:
+        period_begin:
+          type: string
+          format: date-time
+        period_end:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+            - AVAILABLE
+            - BLOCKED
+            - CHARGING
+            - INOPERATIVE
+            - OUTOFORDER
+            - PLANNED
+            - REMOVED
+            - RESERVED
+            - UNKNOWN
+    CredentialsDTO:
+      required:
+        - roles
+        - token
+        - url
+      type: object
+      properties:
+        token:
+          maxLength: 64
+          minLength: 1
+          type: string
+        url:
+          maxLength: 255
+          minLength: 0
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/CredentialsRole'
+    CredentialsRole:
+      type: object
+      properties:
+        role:
+          type: string
+          enum:
+            - CPO
+            - EMSP
+            - HUB
+            - NAP
+            - NSP
+            - OTHER
+            - SCSP
+        business_details:
+          $ref: '#/components/schemas/BusinessDetails'
+        party_id:
+          type: string
+        country_code:
+          type: string
+    ActiveChargingProfileRequestDTO:
+      required:
+        - charging_profile
+        - start_date_time
+      type: object
+      properties:
+        start_date_time:
+          type: string
+          format: date-time
+        charging_profile:
+          $ref: '#/components/schemas/ChargingProfile'
+    ChargingProfile:
+      type: object
+      properties:
+        start_date_time:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+          format: int32
+        charging_rate_unit:
+          type: string
+          enum:
+            - W
+            - A
+        min_charging_rate:
+          type: number
+          format: float
+        charging_profile_period:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChargingProfilePeriod'
+    ChargingProfilePeriod:
+      type: object
+      properties:
+        start_period:
+          type: integer
+          format: int32
+        limit:
+          type: number
+          format: float
+    ResponseFormat:
+      type: object
+      properties:
+        status_code:
+          type: integer
+          format: int32
+        status_message:
+          type: string
+    EnergyContract:
+      type: object
+      properties:
+        supplier_name:
+          type: string
+        contract_id:
+          type: string
+    TokenDTO:
+      required:
+        - contract_id
+        - country_code
+        - issuer
+        - last_updated
+        - party_id
+        - type
+        - uid
+        - valid
+        - whitelist
+      type: object
+      properties:
+        country_code:
+          maxLength: 2
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        party_id:
+          maxLength: 3
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        uid:
+          maxLength: 36
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        type:
+          type: string
+          enum:
+            - AD_HOC_USER
+            - APP_USER
+            - OTHER
+            - RFID
+        contract_id:
+          maxLength: 36
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        visual_number:
+          maxLength: 64
+          minLength: 1
+          type: string
+        issuer:
+          maxLength: 64
+          minLength: 1
+          type: string
+        group_id:
+          maxLength: 36
+          minLength: 1
+          type: string
+        valid:
+          type: boolean
+        whitelist:
+          type: string
+          enum:
+            - ALWAYS
+            - ALLOWED
+            - ALLOWED_OFFLINE
+            - NEVER
+        language:
+          maxLength: 2
+          minLength: 1
+          type: string
+        default_profile_type:
+          type: string
+          enum:
+            - CHEAP
+            - FAST
+            - GREEN
+            - REGULAR
+        energy_contract:
+          $ref: '#/components/schemas/EnergyContract'
+        last_updated:
+          type: string
+          format: date-time
+    ChargingPreferencesDTO:
+      required:
+        - profile_type
+      type: object
+      properties:
+        profile_type:
+          type: string
+          enum:
+            - CHEAP
+            - FAST
+            - GREEN
+            - REGULAR
+        departure_time:
+          type: string
+          format: date-time
+        energyNeed:
+          type: number
+          format: float
+        discharge_allowed:
+          type: boolean
+    SetChargingProfileRequestDTO:
+      required:
+        - charging_profile
+        - 'response_url '
+      type: object
+      properties:
+        charging_profile:
+          $ref: '#/components/schemas/ChargingProfile'
+        'response_url ':
+          type: string
+    ChargingProfileResponseDTO:
+      required:
+        - result
+        - timeout
+      type: object
+      properties:
+        result:
+          type: string
+          enum:
+            - ACCEPTED
+            - NOT_SUPPORTED
+            - REJECTED
+            - TOO_OFTEN
+            - UNKNOWN_SESSION
+        timeout:
+          type: integer
+          format: int32
+    LocationReferencesRequestDTO:
+      required:
+        - location_id
+      type: object
+      properties:
+        location_id:
+          maxLength: 36
+          minLength: 1
+          type: string
+        evse_uids:
+          type: array
+          items:
+            type: string
+    AuthorizationInfoResponseDTO:
+      required:
+        - allowed
+        - token
+      type: object
+      properties:
+        allowed:
+          type: string
+          enum:
+            - ALLOWED
+            - BLOCKED
+            - EXPIRED
+            - NO_CREDIT
+            - NOT_ALLOWED
+        token:
+          $ref: '#/components/schemas/Token'
+        location:
+          $ref: '#/components/schemas/LocationReferences'
+        authorization_reference:
+          maxLength: 36
+          minLength: 1
+          type: string
+        info:
+          $ref: '#/components/schemas/DisplayText'
+    LocationReferences:
+      type: object
+      properties:
+        location_id:
+          type: string
+        evse_uids:
+          type: array
+          items:
+            type: string
+    Token:
+      type: object
+      properties:
+        country_code:
+          type: string
+        party_id:
+          type: string
+        uid:
+          type: string
+        type:
+          type: string
+          enum:
+            - AD_HOC_USER
+            - APP_USER
+            - OTHER
+            - RFID
+        contract_id:
+          type: string
+        visual_number:
+          type: string
+        issuer:
+          type: string
+        group_id:
+          type: string
+        valid:
+          type: boolean
+        whitelist:
+          type: string
+          enum:
+            - ALWAYS
+            - ALLOWED
+            - ALLOWED_OFFLINE
+            - NEVER
+        language:
+          type: string
+        default_profile_type:
+          type: string
+          enum:
+            - CHEAP
+            - FAST
+            - GREEN
+            - REGULAR
+        energy_contract:
+          $ref: '#/components/schemas/EnergyContract'
+        last_updated:
+          type: string
+          format: date-time
+    AbstractProfileResult:
+      type: object
+      properties:
+        result:
+          type: string
+          enum:
+            - ACCEPTED
+            - REJECTED
+            - UNKNOWN
+    CdrDTO:
+      required:
+        - auth_method
+        - cdr_location
+        - cdr_token
+        - charging_periods
+        - end_date_time
+        - id
+        - last_updated
+        - start_date_time
+        - total_cost
+        - total_energy
+        - total_time
+      type: object
+      properties:
+        id:
+          maxLength: 39
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        currency:
+          type: string
+        tariffs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tariff'
+        remark:
+          maxLength: 255
+          minLength: 1
+          type: string
+        credit:
+          type: boolean
+        country_code:
+          type: string
+        party_id:
+          type: string
+        start_date_time:
+          type: string
+          format: date-time
+        end_date_time:
+          type: string
+          format: date-time
+        session_id:
+          maxLength: 36
+          minLength: 1
+          type: string
+        cdr_token:
+          $ref: '#/components/schemas/CdrToken'
+        auth_method:
+          type: string
+          enum:
+            - AUTH_REQUEST
+            - COMMAND
+            - WHITELIST
+        authorization_reference:
+          maxLength: 36
+          minLength: 1
+          type: string
+        cdr_location:
+          $ref: '#/components/schemas/CdrLocation'
+        meter_id:
+          type: string
+        charging_periods:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChargingPeriod'
+        signed_data:
+          $ref: '#/components/schemas/SignedData'
+        total_cost:
+          $ref: '#/components/schemas/Price'
+        total_fixed_cost:
+          $ref: '#/components/schemas/Price'
+        total_energy:
+          type: number
+          format: float
+        total_energy_cost:
+          $ref: '#/components/schemas/Price'
+        total_time:
+          type: number
+          format: float
+        total_time_cost:
+          $ref: '#/components/schemas/Price'
+        total_parking_time:
+          type: number
+          format: float
+        total_parking_cost:
+          $ref: '#/components/schemas/Price'
+        total_reservation_cost:
+          $ref: '#/components/schemas/Price'
+        invoice_reference_id:
+          maxLength: 39
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        credit_reference_id:
+          maxLength: 39
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        home_charging_compensation:
+          type: boolean
+        last_updated:
+          type: string
+          format: date-time
+    CdrLocation:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        postal_code:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        coordinates:
+          $ref: '#/components/schemas/GeoLocation'
+        evse_uid:
+          type: string
+        evse_id:
+          type: string
+        connector_id:
+          type: string
+        connector_standard:
+          type: string
+          enum:
+            - CHADEMO
+            - CHAOJI
+            - DOMESTIC_A
+            - DOMESTIC_B
+            - DOMESTIC_C
+            - DOMESTIC_D
+            - DOMESTIC_E
+            - DOMESTIC_F
+            - DOMESTIC_G
+            - DOMESTIC_H
+            - DOMESTIC_I
+            - DOMESTIC_J
+            - DOMESTIC_K
+            - DOMESTIC_L
+            - DOMESTIC_M
+            - DOMESTIC_N
+            - DOMESTIC_O
+            - GBT_AC
+            - GBT_DC
+            - IEC_60309_2_single_16
+            - IEC_60309_2_three_16
+            - IEC_60309_2_three_32
+            - IEC_60309_2_three_64
+            - IEC_62196_T1
+            - IEC_62196_T1_COMBO
+            - IEC_62196_T2
+            - IEC_62196_T2_COMBO
+            - IEC_62196_T3A
+            - IEC_62196_T3C
+            - NEMA_5_20
+            - NEMA_6_30
+            - NEMA_6_50
+            - NEMA_10_30
+            - NEMA_10_50
+            - NEMA_14_30
+            - NEMA_14_50
+            - PANTOGRAPH_BOTTOM_UP
+            - PANTOGRAPH_TOP_DOWN
+            - TESLA_R
+            - TESLA_S
+        connector_format:
+          type: string
+          enum:
+            - SOCKET
+            - CABLE
+        connector_power_type:
+          type: string
+          enum:
+            - AC_1_PHASE
+            - AC_2_PHASE
+            - AC_2_PHASE_SPLIT
+            - AC_3_PHASE
+            - DC
+    SignedData:
+      type: object
+      properties:
+        encoding_method:
+          type: string
+        encoding_method_version:
+          type: integer
+          format: int32
+        public_key:
+          type: string
+        signed_values:
+          type: array
+          items:
+            $ref: '#/components/schemas/SignedValue'
+        url:
+          type: string
+    SignedValue:
+      type: object
+      properties:
+        plainDat:
+          type: string
+          writeOnly: true
+        nature:
+          type: string
+        plain_data:
+          type: string
+        signed_data:
+          type: string
+    Tariff:
+      type: object
+      properties:
+        country_code:
+          type: string
+        party_id:
+          type: string
+        id:
+          type: string
+        currency:
+          type: string
+        type:
+          type: string
+          enum:
+            - AD_HOC_PAYMENT
+            - PROFILE_CHEAP
+            - PROFILE_FAST
+            - REGULAR
+            - PROFILE_GREEN
+        tariff_alt_text:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisplayText'
+        tariff_alt_url:
+          type: string
+        min_price:
+          $ref: '#/components/schemas/Price'
+        max_price:
+          $ref: '#/components/schemas/Price'
+        elements:
+          type: array
+          items:
+            $ref: '#/components/schemas/TariffElement'
+        start_date_time:
+          type: string
+          format: date-time
+        end_date_time:
+          type: string
+          format: date-time
+        energy_mix:
+          $ref: '#/components/schemas/EnergyMix'
+        last_updated:
+          type: string
+          format: date-time
+    AbstractCommand:
+      required:
+        - response_url
+      type: object
+      properties:
+        response_url:
+          maxLength: 255
+          minLength: 1
+          type: string
+    CommandResponseDTO:
+      required:
+        - result
+        - timeout
+      type: object
+      properties:
+        result:
+          type: string
+          enum:
+            - NOT_SUPPORTED
+            - REJECTED
+            - ACCEPTED
+            - UNKNOWN_SESSION
+        timeout:
+          type: integer
+          format: int32
+        message:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisplayText'
+    Endpoint:
+      type: object
+      properties:
+        identifier:
+          type: string
+          enum:
+            - cdrs
+            - chargingprofiles
+            - commands
+            - credentials
+            - hubclientinfo
+            - locations
+            - sessions
+            - tariffs
+            - tokens
+        role:
+          type: string
+          enum:
+            - SENDER
+            - RECEIVER
+        url:
+          type: string
+    VersionDetailsResponseDTO:
+      required:
+        - endpoints
+        - version
+      type: object
+      properties:
+        version:
+          type: string
+          enum:
+            - '2.0'
+            - '2.1'
+            - 2.1.1
+            - '2.2'
+            - 2.2.1
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Endpoint'
+    AbstractDomainObject:
+      type: object
+    VersionResponseDTO:
+      required:
+        - url
+        - version
+      type: object
+      properties:
+        version:
+          type: string
+          enum:
+            - '2.0'
+            - '2.1'
+            - 2.1.1
+            - '2.2'
+            - 2.2.1
+        url:
+          maxLength: 255
+          minLength: 0
+          type: string
+    ClientInfoDTO:
+      required:
+        - country_code
+        - last_updated
+        - party_id
+        - role
+        - status
+      type: object
+      properties:
+        party_id:
+          maxLength: 3
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        country_code:
+          maxLength: 2
+          minLength: 1
+          pattern: '/[:ascii:]/i'
+          type: string
+        role:
+          type: string
+          enum:
+            - CPO
+            - EMSP
+            - HUB
+            - NAP
+            - NSP
+            - OTHER
+            - SCSP
+        status:
+          type: string
+          enum:
+            - CONNECTED
+            - OFFLINE
+            - PLANNED
+            - SUSPENDED
+        last_updated:
+          type: string
+          format: date-time

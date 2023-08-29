@@ -27,60 +27,60 @@ import java.util.List;
 public class Location extends AbstractDomainObject implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
     @JsonIgnore
-    private final transient Validator countryCodeValidator =
+    private final Validator countryCodeValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string2())
                     .build();
     @JsonIgnore
-    private final transient Validator partyIdValidator =
+    private final Validator partyIdValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string3())
                     .build();
     @JsonIgnore
-    private final transient Validator idValidator =
+    private final Validator idValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string36())
                     .build();
     @JsonIgnore
-    private final transient Validator nameValidator =
+    private final Validator nameValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string255())
                     .build();
     @JsonIgnore
-    private final transient Validator addressValidator =
+    private final Validator addressValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string45())
                     .build();
     @JsonIgnore
-    private final transient Validator cityValidator =
+    private final Validator cityValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string45())
                     .build();
     @JsonIgnore
-    private final transient Validator postalCodeValidator =
+    private final Validator postalCodeValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string10())
                     .build();
     @JsonIgnore
-    private final transient Validator stateValidator =
+    private final Validator stateValidator =
             new ValidatorBuilder()
                     .addRule(ValidationRules.string20())
                     .build();
     @JsonIgnore
-    private final transient Validator countryValidator =
+    private final Validator countryValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string3())
                     .build();
     @JsonIgnore
-    private final transient Validator timeZoneValidator =
+    private final Validator timeZoneValidator =
             new ValidatorBuilder()
                     .setRequired(true)
                     .addRule(ValidationRules.string255())

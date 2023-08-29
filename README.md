@@ -38,7 +38,7 @@ At 2.2.1 ypu can choose what kind of events will be supported by CPO or EMSP.
 Maven
 =====
 
-Find the maven repo here: //todo
+Find the maven repo here: https://mvnrepository.com/artifact/com.extrawest/Extrawest-OCPI-2.2.1
 
 Dependencies
 ============

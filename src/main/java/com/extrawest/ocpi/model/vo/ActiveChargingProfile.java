@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public class ActiveChargingProfile implements Validatable {
 
     @JsonIgnore
-    private final transient Validator requiredValidator = new RequiredValidator();
+    private final Validator requiredValidator = new RequiredValidator();
 
     /**
      * Date and time at which the Charge Point has calculated this ActiveChargingProfile.
